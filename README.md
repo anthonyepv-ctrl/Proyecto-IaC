@@ -136,7 +136,24 @@ terraform destroy
 
 ---
 
-## 4. Contrato de Nombres de Recursos
+## 4. Contrato de API
+
+| Método | Ruta | Usuario | Body / Query | Respuesta |
+|---|---|---|---|---|
+| GET | `/api/sedes` | Cliente | — | `{ "sedes": [...] }` |
+| GET | `/api/disponibilidad` | Cliente | `sede_id`, `inicio`, `fin` | `{ "disponibles": n }` |
+| POST | `/api/reservas` | Cliente | `{ sede_id, placa, inicio, fin }` | `201 { id }` |
+| PATCH | `/api/reservas/{id}/expandir` | Cliente | `{ minutos }` | `200 { fin }` |
+| GET | `/api/admin/reservas` | Recepcionista | `sede_id` (opcional) | `{ "reservas": [...] }` |
+| PATCH | `/api/admin/reservas/{id}/estado` | Recepcionista | `{ estado }` | `200 { ok: true }` |
+
+Estados de una reserva: `activa`, `en_curso`, `finalizada`, `cancelada`.
+
+El panel de recepción del MVP no tiene autenticación. Cognito queda para una fase posterior.
+
+---
+
+## 5. Contrato de Nombres de Recursos
 
 Para garantizar que el merge de los diferentes módulos del equipo se realice sin fricción ni discrepancias, se respeta estrictamente el siguiente contrato:
 
@@ -156,7 +173,7 @@ Para garantizar que el merge de los diferentes módulos del equipo se realice si
 
 ---
 
-## 5. Glosario Técnico y Conceptos Clave
+## 6. Glosario Técnico y Conceptos Clave
 
 - **Terraform State (`terraform.tfstate`):** Registro interno donde Terraform guarda el mapa entre los archivos `.tf` y los recursos físicos aprovisionados en AWS. Si se borra, Terraform pierde el control del estado real.
 - **Stateful Security Groups:** Los grupos de seguridad de AWS son *stateful*: si una solicitud es permitida en salida, la respuesta entrante correspondiente es permitida automáticamente.
