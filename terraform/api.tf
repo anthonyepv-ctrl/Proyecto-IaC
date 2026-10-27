@@ -43,6 +43,30 @@ resource "aws_api_gateway_resource" "expandir" {
   path_part   = "expandir"
 }
 
+resource "aws_api_gateway_resource" "admin" {
+  rest_api_id = aws_api_gateway_rest_api.this.id
+  parent_id   = aws_api_gateway_resource.api.id
+  path_part   = "admin"
+}
+
+resource "aws_api_gateway_resource" "admin_reservas" {
+  rest_api_id = aws_api_gateway_rest_api.this.id
+  parent_id   = aws_api_gateway_resource.admin.id
+  path_part   = "reservas"
+}
+
+resource "aws_api_gateway_resource" "admin_reserva_id" {
+  rest_api_id = aws_api_gateway_rest_api.this.id
+  parent_id   = aws_api_gateway_resource.admin_reservas.id
+  path_part   = "{id}"
+}
+
+resource "aws_api_gateway_resource" "admin_estado" {
+  rest_api_id = aws_api_gateway_rest_api.this.id
+  parent_id   = aws_api_gateway_resource.admin_reserva_id.id
+  path_part   = "estado"
+}
+
 resource "aws_api_gateway_deployment" "this" {
   rest_api_id = aws_api_gateway_rest_api.this.id
 
@@ -54,6 +78,10 @@ resource "aws_api_gateway_deployment" "this" {
       aws_api_gateway_resource.reservas.id,
       aws_api_gateway_resource.reserva_id.id,
       aws_api_gateway_resource.expandir.id,
+      aws_api_gateway_resource.admin.id,
+      aws_api_gateway_resource.admin_reservas.id,
+      aws_api_gateway_resource.admin_reserva_id.id,
+      aws_api_gateway_resource.admin_estado.id,
     ]))
   }
 
