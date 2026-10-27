@@ -29,6 +29,7 @@
 </head>
 <body>
   <h1>TuCochera</h1>
+  <p><a href="admin.html">Panel de recepción</a></p>
 
   <h2>Consultar disponibilidad</h2>
   <select id="sede"></select>
@@ -52,7 +53,7 @@
   <script>
     const USE_FAKE_DATA = true;
 
-    const sedes = [
+    let sedes = [
       { id: 1, nombre: "Sede Lima Centro", capacidad: 60 },
       { id: 2, nombre: "Sede Miraflores", capacidad: 60 },
       { id: 3, nombre: "Sede San Isidro", capacidad: 60 },
@@ -91,7 +92,8 @@
           return respuesta.json();
         })
         .then(function (datos) {
-          llenarSedes(datos.sedes || datos);
+          sedes = datos.sedes || datos;
+          llenarSedes(sedes);
         })
         .catch(function () {
           resultado.textContent = "No se pudieron cargar las sedes.";

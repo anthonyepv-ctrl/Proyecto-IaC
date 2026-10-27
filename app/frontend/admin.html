@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TuCochera - Recepción</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 0 12px;
+    }
+
+    select,
+    button {
+      padding: 8px;
+      margin: 4px 0;
+    }
+
+    select {
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    button {
+      border: none;
+      border-radius: 4px;
+      background: #0f5d45;
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    button.secundario {
+      background: #777777;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    th,
+    td {
+      padding: 8px;
+      border-bottom: 1px solid #dddddd;
+      text-align: left;
+    }
+
+    th {
+      background: #f0f0f0;
+    }
+
+    a {
+      color: #0f5d45;
+    }
+
+    .estado {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>TuCochera - Recepción</h1>
+  <p><a href="index.html">Volver al sitio del cliente</a></p>
+
+  <h2>Ocupación</h2>
+  <select id="sede"></select>
+  <p id="ocupacion"></p>
+
+  <h2>Reservas</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Sede</th>
+        <th>Placa</th>
+        <th>Inicio</th>
+        <th>Fin</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody id="tabla-reservas"></tbody>
+  </table>
+
+  <script>
+    const USE_FAKE_DATA = true;
+
+    let sedes = [
+      { id: 1, nombre: "Sede Lima Centro", capacidad: 60 },
+      { id: 2, nombre: "Sede Miraflores", capacidad: 60 },
+      { id: 3, nombre: "Sede San Isidro", capacidad: 60 },
+      { id: 4, nombre: "Sede Arequipa", capacidad: 60 },
+      { id: 5, nombre: "Sede Trujillo", capacidad: 60 },
+      { id: 6, nombre: "Sede Chiclayo", capacidad: 60 },
+      { id: 7, nombre: "Sede Cusco", capacidad: 60 },
+      { id: 8, nombre: "Sede Piura", capacidad: 60 },
+      { id: 9, nombre: "Sede Huancayo", capacidad: 60 },
+      { id: 10, nombre: "Sede Iquitos", capacidad: 60 },
+      { id: 11, nombre: "Sede Tacna", capacidad: 60 },
+      { id: 12, nombre: "Sede Puno", capacidad: 60 }
+    ];
+
+    function fechaISO(horas) {
+      return new Date(Date.now() + horas * 60 * 60 * 1000).toISOString();
+    }
+
+    let reservas = [
+      { id: 1, sedeId: 1, placa: "ABC-123", inicio: fechaISO(1), fin: fechaISO(2), estado: "activa" },
+      { id: 2, sedeId: 2, placa: "XYZ-789", inicio: fechaISO(1), fin: fechaISO(3), estado: "en_curso" },
+      { id: 3, sedeId: 4, placa: "MOT-456", inicio: fechaISO(-2), fin: fechaISO(-1), estado: "finalizada" }
+    ];
+
+    const sedeSelect = document.getElementById("sede");
+    const ocupacion = document.getElementById("ocupacion");
+    const tabla = document.getElementById("tabla-reservas");
+
+    function cargarSedes() {
+      if (USE_FAKE_DATA) {
+        llenarSedes(sedes);
+        return;
+      }
+
+      fetch("/api/sedes")
+        .then(function (respuesta) {
+          return respuesta.json();
+        })
+        .then(function (datos) {
+          sedes = datos.sedes || datos;
+          llenarSedes(sedes);
+        });
+    }
+
+    function llenarSedes(lista) {
+      sedeSelect.innerHTML = '<option value="0">Todas</option>';
+
+      lista.forEach(function (sede) {
+        const opcion = document.createElement("option");
+        opcion.value = sede.id;
+        opcion.textContent = sede.nombre;
+        sedeSelect.appendChild(opcion);
+      });
+    }
+
+    function cargarReservas() {
+      if (USE_FAKE_DATA) {
+        return Promise.resolve();
+      }
+
+      return fetch("/api/admin/reservas")
+        .then(function (respuesta) {
+          return respuesta.json();
+        })
+        .then(function (datos) {
+          reservas = datos.reservas || datos;
+        });
+    }
+
+    function textoFecha(valor) {
+      return new Date(valor).toLocaleString("es-PE");
+    }
+
+    function etiquetaEstado(estado) {
+      if (estado === "activa") {
+        return "Reservada";
+      }
+      if (estado === "en_curso") {
+        return "En curso";
+      }
+      if (estado === "finalizada") {
+        return "Finalizada";
+      }
+      if (estado === "cancelada") {
+        return "Cancelada";
+      }
+      return estado;
+    }
+
+    function filtrar() {
+      const sedeId = Number(sedeSelect.value);
+
+      if (sedeId === 0) {
+        return reservas;
+      }
+
+      return reservas.filter(function (reserva) {
+        return reserva.sedeId === sedeId;
+      });
+    }
+
+    function mostrarOcupacion() {
+      const sedeId = Number(sedeSelect.value);
+      const listaSedes = sedeId === 0
+        ? sedes
+        : sedes.filter(function (sede) {
+            return sede.id === sedeId;
+          });
+
+      const capacidad = listaSedes.reduce(function (total, sede) {
+        return total + sede.capacidad;
+      }, 0);
+
+      const ocupados = filtrar().filter(function (reserva) {
+        return reserva.estado === "activa" || reserva.estado === "en_curso";
+      }).length;
+
+      ocupacion.textContent = "Ocupados: " + ocupados + " de " + capacidad;
+    }
+
+    function botones(reserva) {
+      if (reserva.estado === "activa") {
+        return (
+          '<button data-id="' + reserva.id + '" data-estado="en_curso">Check-in</button> ' +
+          '<button class="secundario" data-id="' + reserva.id + '" data-estado="cancelada">Cancelar</button>'
+        );
+      }
+
+      if (reserva.estado === "en_curso") {
+        return '<button data-id="' + reserva.id + '" data-estado="finalizada">Check-out</button>';
+      }
+
+      return "-";
+    }
+
+    function mostrarReservas() {
+      const lista = filtrar();
+
+      if (lista.length === 0) {
+        tabla.innerHTML = '<tr><td colspan="6">No hay reservas.</td></tr>';
+        mostrarOcupacion();
+        return;
+      }
+
+      tabla.innerHTML = lista
+        .map(function (reserva) {
+          const sede = sedes.find(function (item) {
+            return item.id === reserva.sedeId;
+          });
+
+          return (
+            "<tr>" +
+            "<td>" + (sede ? sede.nombre : reserva.sedeId) + "</td>" +
+            "<td>" + reserva.placa + "</td>" +
+            "<td>" + textoFecha(reserva.inicio) + "</td>" +
+            "<td>" + textoFecha(reserva.fin) + "</td>" +
+            '<td class="estado">' + etiquetaEstado(reserva.estado) + "</td>" +
+            "<td>" + botones(reserva) + "</td>" +
+            "</tr>"
+          );
+        })
+        .join("");
+
+      mostrarOcupacion();
+    }
+
+    function cambiarEstado(id, estado) {
+      if (USE_FAKE_DATA) {
+        const reserva = reservas.find(function (item) {
+          return item.id === id;
+        });
+
+        if (reserva) {
+          reserva.estado = estado;
+        }
+
+        return Promise.resolve();
+      }
+
+      return fetch("/api/admin/reservas/" + id + "/estado", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ estado: estado })
+      }).then(function (respuesta) {
+        if (!respuesta.ok) {
+          throw new Error("No se pudo cambiar el estado.");
+        }
+
+        const reserva = reservas.find(function (item) {
+          return item.id === id;
+        });
+
+        if (reserva) {
+          reserva.estado = estado;
+        }
+      });
+    }
+
+    tabla.addEventListener("click", function (evento) {
+      const boton = evento.target.closest("button[data-id]");
+
+      if (!boton) {
+        return;
+      }
+
+      boton.disabled = true;
+
+      cambiarEstado(Number(boton.dataset.id), boton.dataset.estado)
+        .then(mostrarReservas)
+        .catch(function () {
+          boton.disabled = false;
+        });
+    });
+
+    sedeSelect.addEventListener("change", mostrarReservas);
+
+    cargarSedes();
+    cargarReservas().then(mostrarReservas);
+  </script>
+</body>
+</html>
