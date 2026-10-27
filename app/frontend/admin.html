@@ -119,10 +119,10 @@
     function cargarSedes() {
       if (USE_FAKE_DATA) {
         llenarSedes(sedes);
-        return;
+        return Promise.resolve();
       }
 
-      fetch("/api/sedes")
+      return fetch("/api/sedes")
         .then(function (respuesta) {
           return respuesta.json();
         })
@@ -304,8 +304,9 @@
 
     sedeSelect.addEventListener("change", mostrarReservas);
 
-    cargarSedes();
-    cargarReservas().then(mostrarReservas);
+    cargarSedes()
+      .then(cargarReservas)
+      .then(mostrarReservas);
   </script>
 </body>
 </html>

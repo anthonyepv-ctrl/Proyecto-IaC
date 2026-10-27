@@ -84,10 +84,10 @@
     function cargarSedes() {
       if (USE_FAKE_DATA) {
         llenarSedes(sedes);
-        return;
+        return Promise.resolve();
       }
 
-      fetch("/api/sedes")
+      return fetch("/api/sedes")
         .then(function (respuesta) {
           return respuesta.json();
         })
@@ -327,9 +327,10 @@
       finInput.value = fechaParaInput(dosHoras);
     }
 
-    cargarSedes();
-    inicializarFechas();
-    mostrarReservas();
+    cargarSedes().then(function () {
+      inicializarFechas();
+      mostrarReservas();
+    });
   </script>
 </body>
 </html>
