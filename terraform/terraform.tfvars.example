@@ -1,0 +1,37 @@
+# ==============================================================================
+# Archivo de ejemplo para configuración de variables locales
+# Copiar este archivo a terraform.tfvars y ajustar los valores:
+#   cp terraform.tfvars.example terraform.tfvars
+# NOTA: terraform.tfvars está en el .gitignore y NUNCA debe subirse al repo.
+# ==============================================================================
+
+aws_region  = "us-east-1"
+aws_profile = "default"
+project     = "tucochera"
+environment = "dev"
+
+# Red
+vpc_cidr           = "10.0.0.0/16"
+availability_zones = ["us-east-1a", "us-east-1b"]
+subnet_cidr_app_a  = "10.0.1.0/24"
+subnet_cidr_app_b  = "10.0.2.0/24"
+subnet_cidr_db_a   = "10.0.3.0/24"
+subnet_cidr_db_b   = "10.0.4.0/24"
+
+# Base de datos RDS
+db_name              = "tucochera"
+db_username          = "tucochera_admin"
+db_instance_class    = "db.t4g.micro"
+db_allocated_storage = 20
+
+# Funciones Lambda
+lambda_runtime     = "python3.12"
+lambda_memory_size = 256
+lambda_timeout     = 15
+
+# CloudWatch Logs
+log_retention_days = 7
+
+# API Gateway Throttling
+api_throttle_rate_limit  = 100
+api_throttle_burst_limit = 200
