@@ -18,3 +18,8 @@ override.tf.json
 
 .terraformrc
 terraform.rc
+
+# Artefactos de build de las Lambdas
+build/
+*.zip
+
