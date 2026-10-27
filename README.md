@@ -119,6 +119,8 @@ Ejecutar el script de sincronización con S3 e invalidación de CloudFront:
 ..\scripts\deploy_frontend.ps1
 ```
 
+> Antes de desplegar, cambia `USE_FAKE_DATA = true` a `false` en `app/frontend/index.html` para consumir la API real.
+
 ### Paso 6: Compartir información con el equipo
 Pita comparte en el grupo de trabajo:
 - **CloudFront URL:** Dominio HTTPS para acceder a la aplicación web.
