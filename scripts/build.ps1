@@ -1,4 +1,3 @@
-#Requires -Version 7
 $ErrorActionPreference = "Stop"
 
 $root    = Split-Path -Parent $PSScriptRoot
@@ -21,6 +20,7 @@ foreach ($fn in $functions) {
     Copy-Item (Join-Path $src "*") $stage -Recurse -Force
 
     $req = Join-Path $src "requirements.txt"
+    if (-not (Test-Path $req)) { $req = Join-Path $backend "requirements.txt" }
     if (Test-Path $req) {
         python -m pip install -r $req --target $stage --quiet --no-compile
         if ($LASTEXITCODE -ne 0) { throw "pip fallo en $fn" }
@@ -29,7 +29,8 @@ foreach ($fn in $functions) {
     }
 
     $zip = Join-Path $build "$fn.zip"
-    Compress-Archive -Path (Join-Path $stage "*") -DestinationPath $zip -Force
+    python -c "import sys,os,zipfile; src,dst=sys.argv[1],sys.argv[2]; z=zipfile.ZipFile(dst,'w',zipfile.ZIP_DEFLATED); [z.write(os.path.join(r,f), os.path.relpath(os.path.join(r,f),src).replace(os.sep,'/')) for r,_,fs in os.walk(src) for f in fs]; z.close()" $stage $zip
+    if ($LASTEXITCODE -ne 0) { throw "zip fallo en $fn" }
     Remove-Item $stage -Recurse -Force
     Write-Host "OK  $zip"
 }
