@@ -1,0 +1,55 @@
+name: Deploy dev
+
+on:
+  push:
+    branches: [development]
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: deploy-dev
+  cancel-in-progress: false
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    environment: dev
+    env:
+      TF_VAR_aws_profile: ""
+      TF_VAR_aws_region: ${{ vars.AWS_REGION || secrets.AWS_REGION || 'us-east-2' }}
+      TF_VAR_availability_zones: '["us-east-2a", "us-east-2b"]'
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN || secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION || secrets.AWS_REGION || 'us-east-2' }}
+
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.10.5"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build Lambdas
+        shell: pwsh
+        run: ./scripts/build.ps1
+
+      - name: Terraform init
+        run: >
+          terraform -chdir=terraform init
+          -input=false
+          -backend-config="bucket=${{ vars.TF_STATE_BUCKET || secrets.TF_STATE_BUCKET || 'lab09-tfstate-tucochera-011713308793' }}"
+          -backend-config="region=${{ vars.AWS_REGION || secrets.AWS_REGION || 'us-east-2' }}"
+
+      - name: Terraform validate
+        run: terraform -chdir=terraform validate
+
+      - name: Terraform plan
+        run: terraform -chdir=terraform plan -input=false
