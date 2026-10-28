@@ -1,7 +1,8 @@
 
-
 import os
 import ssl
+from pathlib import Path
+
 import pg8000.dbapi
 
 _conn = None
@@ -24,11 +25,11 @@ def get_conn():
                 pass
             _conn = None
 
-    # Leer la ruta del certificado CA de RDS.
-    ca_path = os.environ["DB_SSL_CA"]
-    ssl_context = ssl.create_default_context(cafile=ca_path)
+    # Obtener la ruta del certificado desde la carpeta common.
+    ca_path = Path(__file__).parent / "certs" / "global-bundle.pem"
+    ssl_context = ssl.create_default_context(cafile=str(ca_path))
 
-    # Crear la conexión segura a PostgreSQL.
+    # Crear una conexión segura a PostgreSQL.
     _conn = pg8000.dbapi.connect(
         host=os.environ["DB_HOST"],
         port=int(os.environ.get("DB_PORT", "5432")),
@@ -39,8 +40,7 @@ def get_conn():
         ssl_context=ssl_context
     )
 
-    # Las consultas normales no dejan transacciones abiertas.
+    # Evitar transacciones abiertas en consultas normales.
     _conn.autocommit = True
 
     return _conn
-
