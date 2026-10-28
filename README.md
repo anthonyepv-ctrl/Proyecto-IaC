@@ -119,6 +119,8 @@ Ejecutar el script de sincronización con S3 e invalidación de CloudFront:
 ..\scripts\deploy_frontend.ps1
 ```
 
+> Antes de desplegar, cambia `USE_FAKE_DATA = true` a `false` en `app/frontend/index.html` para consumir la API real.
+
 ### Paso 6: Compartir información con el equipo
 Pita comparte en el grupo de trabajo:
 - **CloudFront URL:** Dominio HTTPS para acceder a la aplicación web.
@@ -134,7 +136,23 @@ terraform destroy
 
 ---
 
-## 4. Contrato de Nombres de Recursos
+## 4. Contrato de API
+
+| Método | Ruta | Usuario | Body / Query | Respuesta |
+|---|---|---|---|---|
+| GET | `/api/sedes` | Cliente | — | `{ "sedes": [...] }` |
+| GET | `/api/disponibilidad` | Cliente | `sede_id`, `inicio`, `fin` | `{ "disponibles": n }` |
+| POST | `/api/reservas` | Cliente | `{ sede_id, placa, inicio, fin }` | `201 { id }` |
+
+Estados de una reserva: `activa`, `en_curso`, `finalizada`, `cancelada`.
+
+El MVP solo expone consulta y reserva. Expandir/expirar reservas y el panel de recepción con datos reales quedan para una fase posterior.
+
+El panel de recepción es un prototipo de consulta con datos de prueba. Su API y su autenticación quedan para una fase posterior.
+
+---
+
+## 5. Contrato de Nombres de Recursos
 
 Para garantizar que el merge de los diferentes módulos del equipo se realice sin fricción ni discrepancias, se respeta estrictamente el siguiente contrato:
 
@@ -154,7 +172,7 @@ Para garantizar que el merge de los diferentes módulos del equipo se realice si
 
 ---
 
-## 5. Glosario Técnico y Conceptos Clave
+## 6. Glosario Técnico y Conceptos Clave
 
 - **Terraform State (`terraform.tfstate`):** Registro interno donde Terraform guarda el mapa entre los archivos `.tf` y los recursos físicos aprovisionados en AWS. Si se borra, Terraform pierde el control del estado real.
 - **Stateful Security Groups:** Los grupos de seguridad de AWS son *stateful*: si una solicitud es permitida en salida, la respuesta entrante correspondiente es permitida automáticamente.

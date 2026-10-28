@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TuCochera</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 560px;
+      margin: 20px auto;
+      padding: 0 12px;
+    }
+
+    input,
+    select,
+    button {
+      display: block;
+      width: 100%;
+      margin: 6px 0;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>TuCochera</h1>
+  <p><a href="admin.html">Panel de recepción</a></p>
+
+  <h2>Consultar disponibilidad</h2>
+  <select id="sede"></select>
+  <input type="datetime-local" id="inicio">
+  <input type="datetime-local" id="fin">
+  <button id="btn-consultar">Consultar</button>
+  <p id="resultado"></p>
+
+  <div id="reserva" hidden>
+    <h2>Reservar</h2>
+    <input type="text" id="placa" placeholder="Placa" maxlength="10">
+    <button id="btn-reservar">Reservar</button>
+    <p id="mensaje"></p>
+  </div>
+
+  <h2>Reservas</h2>
+  <ul id="lista-reservas">
+    <li>Aún no hay reservas.</li>
+  </ul>
+
+  <script>
+    const USE_FAKE_DATA = true;
+
+    let sedes = [
+      { id: 1, nombre: "Sede Lima Centro", capacidad: 60 },
+      { id: 2, nombre: "Sede Miraflores", capacidad: 60 },
+      { id: 3, nombre: "Sede San Isidro", capacidad: 60 },
+      { id: 4, nombre: "Sede Arequipa", capacidad: 60 },
+      { id: 5, nombre: "Sede Trujillo", capacidad: 60 },
+      { id: 6, nombre: "Sede Chiclayo", capacidad: 60 },
+      { id: 7, nombre: "Sede Cusco", capacidad: 60 },
+      { id: 8, nombre: "Sede Piura", capacidad: 60 },
+      { id: 9, nombre: "Sede Huancayo", capacidad: 60 },
+      { id: 10, nombre: "Sede Iquitos", capacidad: 60 },
+      { id: 11, nombre: "Sede Tacna", capacidad: 60 },
+      { id: 12, nombre: "Sede Puno", capacidad: 60 }
+    ];
+
+    let reservas = [];
+    let consulta = null;
+    let siguienteId = 1;
+
+    const sedeInput = document.getElementById("sede");
+    const inicioInput = document.getElementById("inicio");
+    const finInput = document.getElementById("fin");
+    const resultado = document.getElementById("resultado");
+    const reservaDiv = document.getElementById("reserva");
+    const placaInput = document.getElementById("placa");
+    const mensaje = document.getElementById("mensaje");
+    const listaReservas = document.getElementById("lista-reservas");
+
+    function cargarSedes() {
+      if (USE_FAKE_DATA) {
+        llenarSedes(sedes);
+        return Promise.resolve();
+      }
+
+      return fetch("/api/sedes")
+        .then(function (respuesta) {
+          return respuesta.json();
+        })
+        .then(function (datos) {
+          sedes = datos.sedes || datos;
+          llenarSedes(sedes);
+        })
+        .catch(function () {
+          resultado.textContent = "No se pudieron cargar las sedes.";
+        });
+    }
+
+    function llenarSedes(lista) {
+      sedeInput.innerHTML = "";
+
+      lista.forEach(function (sede) {
+        const opcion = document.createElement("option");
+        opcion.value = sede.id;
+        opcion.textContent = sede.nombre;
+        sedeInput.appendChild(opcion);
+      });
+    }
+
+    function fechaParaInput(fecha) {
+      const pad = function (numero) {
+        return String(numero).padStart(2, "0");
+      };
+
+      return (
+        fecha.getFullYear() +
+        "-" +
+        pad(fecha.getMonth() + 1) +
+        "-" +
+        pad(fecha.getDate()) +
+        "T" +
+        pad(fecha.getHours()) +
+        ":" +
+        pad(fecha.getMinutes())
+      );
+    }
+
+    function textoFecha(valor) {
+      return new Date(valor).toLocaleString("es-PE");
+    }
+
+    function hayCruce(inicio1, fin1, inicio2, fin2) {
+      return new Date(inicio1) < new Date(fin2) && new Date(fin1) > new Date(inicio2);
+    }
+
+    function disponiblesFalso(sedeId, inicio, fin) {
+      const sede = sedes.find(function (item) {
+        return item.id === Number(sedeId);
+      });
+
+      const ocupadas = reservas.filter(function (reserva) {
+        return reserva.sedeId === Number(sedeId) && hayCruce(reserva.inicio, reserva.fin, inicio, fin);
+      });
+
+      return sede.capacidad - ocupadas.length;
+    }
+
+    function consultarDisponibilidad(sedeId, inicio, fin) {
+      if (USE_FAKE_DATA) {
+        return Promise.resolve(disponiblesFalso(sedeId, inicio, fin));
+      }
+
+      const parametros = new URLSearchParams({
+        sede_id: sedeId,
+        inicio: new Date(inicio).toISOString(),
+        fin: new Date(fin).toISOString()
+      });
+
+      return fetch("/api/disponibilidad?" + parametros.toString())
+        .then(function (respuesta) {
+          if (!respuesta.ok) {
+            throw new Error("No se pudo consultar.");
+          }
+          return respuesta.json();
+        })
+        .then(function (datos) {
+          return datos.disponibles;
+        });
+    }
+
+    function registrarReserva(datos) {
+      if (USE_FAKE_DATA) {
+        return Promise.resolve({ id: siguienteId++ });
+      }
+
+      return fetch("/api/reservas", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          sede_id: datos.sedeId,
+          placa: datos.placa,
+          inicio: new Date(datos.inicio).toISOString(),
+          fin: new Date(datos.fin).toISOString()
+        })
+      }).then(function (respuesta) {
+        return respuesta.json().then(function (cuerpo) {
+          if (!respuesta.ok) {
+            throw new Error(cuerpo.error || "No se pudo reservar.");
+          }
+          return cuerpo;
+        });
+      });
+    }
+
+    function mostrarReservas() {
+      if (reservas.length === 0) {
+        listaReservas.innerHTML = "<li>Aún no hay reservas.</li>";
+        return;
+      }
+
+      listaReservas.innerHTML = reservas
+        .map(function (reserva) {
+          const sede = sedes.find(function (item) {
+            return item.id === reserva.sedeId;
+          });
+
+          return (
+            "<li>" +
+            (sede ? sede.nombre : reserva.sedeId) +
+            " - " +
+            reserva.placa +
+            " - " +
+            textoFecha(reserva.inicio) +
+            " a " +
+            textoFecha(reserva.fin) +
+            "</li>"
+          );
+        })
+        .join("");
+    }
+
+    function actualizarResultado() {
+      if (!consulta) {
+        return Promise.resolve();
+      }
+
+      return consultarDisponibilidad(consulta.sedeId, consulta.inicio, consulta.fin)
+        .then(function (libres) {
+          const sede = sedes.find(function (item) {
+            return item.id === consulta.sedeId;
+          });
+
+          resultado.textContent =
+            "Quedan " + libres + " de " + sede.capacidad + " espacios en " + sede.nombre + ".";
+
+          reservaDiv.hidden = libres <= 0;
+        })
+        .catch(function (error) {
+          resultado.textContent = error.message;
+        });
+    }
+
+    document.getElementById("btn-consultar").addEventListener("click", function () {
+      const sedeId = Number(sedeInput.value);
+      const inicio = inicioInput.value;
+      const fin = finInput.value;
+
+      if (!sedeId || !inicio || !fin) {
+        resultado.textContent = "Completa la sede, el inicio y el fin.";
+        return;
+      }
+
+      if (new Date(fin) <= new Date(inicio)) {
+        resultado.textContent = "La fecha de fin debe ser mayor que la de inicio.";
+        return;
+      }
+
+      consulta = {
+        sedeId: sedeId,
+        inicio: inicio,
+        fin: fin
+      };
+
+      actualizarResultado();
+    });
+
+    document.getElementById("btn-reservar").addEventListener("click", function () {
+      if (!consulta) {
+        mensaje.textContent = "Primero consulta la disponibilidad.";
+        return;
+      }
+
+      const placa = placaInput.value.trim().toUpperCase();
+
+      if (!placa) {
+        mensaje.textContent = "Ingresa la placa.";
+        return;
+      }
+
+      consultarDisponibilidad(consulta.sedeId, consulta.inicio, consulta.fin)
+        .then(function (libres) {
+          if (libres <= 0) {
+            mensaje.textContent = "Ya no hay espacios.";
+            return null;
+          }
+
+          return registrarReserva({
+            sedeId: consulta.sedeId,
+            inicio: consulta.inicio,
+            fin: consulta.fin,
+            placa: placa
+          });
+        })
+        .then(function (respuesta) {
+          if (!respuesta) {
+            return;
+          }
+
+          reservas.push({
+            id: respuesta.id,
+            sedeId: consulta.sedeId,
+            inicio: consulta.inicio,
+            fin: consulta.fin,
+            placa: placa
+          });
+
+          placaInput.value = "";
+          mostrarReservas();
+          mensaje.textContent = "Reserva registrada.";
+          return actualizarResultado();
+        })
+        .catch(function (error) {
+          mensaje.textContent = error.message;
+        });
+    });
+
+    function inicializarFechas() {
+      const ahora = new Date();
+      const unaHora = new Date(ahora.getTime() + 60 * 60 * 1000);
+      const dosHoras = new Date(ahora.getTime() + 2 * 60 * 60 * 1000);
+
+      inicioInput.value = fechaParaInput(unaHora);
+      finInput.value = fechaParaInput(dosHoras);
+    }
+
+    cargarSedes().then(function () {
+      inicializarFechas();
+      mostrarReservas();
+    });
+  </script>
+</body>
+</html>
