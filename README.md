@@ -165,7 +165,7 @@ Para garantizar que el merge de los diferentes módulos del equipo se realice si
 | **Contraseña RDS** | `random_password.db` | Kevin |
 | **Subnet Group RDS**| `aws_db_subnet_group.this` | Kevin |
 | **Instancia RDS** | `aws_db_instance.this` | Kevin |
-| **Lambdas** | `aws_lambda_function.disponibilidad`, `registrar`, `expandir`, `db_init` | Aldair |
+| **Lambdas** | `aws_lambda_function.disponibilidad`, `registrar`, `db_init` | Aldair |
 | **API Gateway** | `aws_api_gateway_rest_api.this`, `aws_api_gateway_stage.this` | Alberth |
 | **Bucket Frontend** | `aws_s3_bucket.frontend` | Alberth |
 | **CloudFront** | `aws_cloudfront_distribution.this` | Alberth |
@@ -177,3 +177,16 @@ Para garantizar que el merge de los diferentes módulos del equipo se realice si
 - **Terraform State (`terraform.tfstate`):** Registro interno donde Terraform guarda el mapa entre los archivos `.tf` y los recursos físicos aprovisionados en AWS. Si se borra, Terraform pierde el control del estado real.
 - **Stateful Security Groups:** Los grupos de seguridad de AWS son *stateful*: si una solicitud es permitida en salida, la respuesta entrante correspondiente es permitida automáticamente.
 - **default_tags:** Bloque en el provider de AWS que inyecta automáticamente etiquetas (`Project`, `Environment`, `ManagedBy`) a todos los recursos que soportan tags.
+
+---
+
+## 7. Pruebas del Backend
+
+Se implementaron scripts para comprobar el funcionamiento del backend.
+
+- **Build:** genera los paquetes ZIP de las funciones Lambda.
+- **Smoke Test:** verifica la consulta de sedes, disponibilidad y registro de reservas.
+- **Concurrencia:** envía 50 solicitudes simultáneas para comprobar el control de disponibilidad.
+- **Base de datos:** permite verificar que la inicialización pueda ejecutarse varias veces sin duplicar las sedes.
+
+Las pruebas deben ejecutarse para verificar su correcto funcionamiento.

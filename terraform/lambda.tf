@@ -1,3 +1,4 @@
+
 variable "lambda_reserved_concurrency" {
   description = "Concurrencia reservada por funcion. Usar -1 para no reservar (cuentas nuevas con cuota 10)."
   type        = number
@@ -22,12 +23,6 @@ resource "aws_cloudwatch_log_group" "disponibilidad" {
 
 resource "aws_cloudwatch_log_group" "registrar" {
   name              = "/aws/lambda/${local.name}-registrar"
-  retention_in_days = var.log_retention_days
-  tags              = local.common_tags
-}
-
-resource "aws_cloudwatch_log_group" "expandir" {
-  name              = "/aws/lambda/${local.name}-expandir"
   retention_in_days = var.log_retention_days
   tags              = local.common_tags
 }
@@ -98,36 +93,6 @@ resource "aws_lambda_function" "registrar" {
   ]
 }
 
-resource "aws_lambda_function" "expandir" {
-  function_name = "${local.name}-expandir"
-  role          = aws_iam_role.lambda.arn
-  runtime       = var.lambda_runtime
-  handler       = "handler.lambda_handler"
-  timeout       = var.lambda_timeout
-  memory_size   = var.lambda_memory_size
-
-  filename         = "${path.module}/../build/expandir.zip"
-  source_code_hash = filebase64sha256("${path.module}/../build/expandir.zip")
-
-  reserved_concurrent_executions = var.lambda_reserved_concurrency
-
-  vpc_config {
-    subnet_ids         = [aws_subnet.app_a.id]
-    security_group_ids = [aws_security_group.lambda.id]
-  }
-
-  environment {
-    variables = local.lambda_env
-  }
-
-  tags = local.common_tags
-
-  depends_on = [
-    aws_cloudwatch_log_group.expandir,
-    aws_iam_role_policy_attachment.lambda_vpc,
-  ]
-}
-
 resource "aws_lambda_function" "db_init" {
   function_name = "${local.name}-db-init"
   role          = aws_iam_role.lambda.arn
@@ -162,7 +127,6 @@ output "lambda_function_names" {
   value = {
     disponibilidad = aws_lambda_function.disponibilidad.function_name
     registrar      = aws_lambda_function.registrar.function_name
-    expandir       = aws_lambda_function.expandir.function_name
     db_init        = aws_lambda_function.db_init.function_name
   }
 }

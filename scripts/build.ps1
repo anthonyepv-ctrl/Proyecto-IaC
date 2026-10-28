@@ -3,7 +3,7 @@ $ErrorActionPreference = "Stop"
 $root    = Split-Path -Parent $PSScriptRoot
 $backend = Join-Path $root "app/backend"
 $build   = Join-Path $root "build"
-$functions = @("disponibilidad", "registrar", "expandir", "db_init")
+$functions = @("disponibilidad", "registrar", "db_init")
 
 if (Test-Path $build) { Remove-Item $build -Recurse -Force }
 New-Item -ItemType Directory -Path $build | Out-Null
@@ -16,7 +16,9 @@ foreach ($fn in $functions) {
     New-Item -ItemType Directory -Path $stage | Out-Null
 
     $common = Join-Path $backend "common"
-    if (Test-Path $common) { Copy-Item (Join-Path $common "*") $stage -Recurse }
+    if (Test-Path $common) {
+        Copy-Item $common $stage -Recurse -Force
+    }
     Copy-Item (Join-Path $src "*") $stage -Recurse -Force
 
     $req = Join-Path $src "requirements.txt"

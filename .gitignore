@@ -23,3 +23,5 @@ terraform.rc
 build/
 *.zip
 
+__pycache__/
+*.py[cod]
