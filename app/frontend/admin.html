@@ -78,7 +78,6 @@
         <th>Inicio</th>
         <th>Fin</th>
         <th>Estado</th>
-        <th>Acciones</th>
       </tr>
     </thead>
     <tbody id="tabla-reservas"></tbody>
@@ -208,26 +207,11 @@
       ocupacion.textContent = "Ocupados: " + ocupados + " de " + capacidad;
     }
 
-    function botones(reserva) {
-      if (reserva.estado === "activa") {
-        return (
-          '<button data-id="' + reserva.id + '" data-estado="en_curso">Check-in</button> ' +
-          '<button class="secundario" data-id="' + reserva.id + '" data-estado="cancelada">Cancelar</button>'
-        );
-      }
-
-      if (reserva.estado === "en_curso") {
-        return '<button data-id="' + reserva.id + '" data-estado="finalizada">Check-out</button>';
-      }
-
-      return "-";
-    }
-
     function mostrarReservas() {
       const lista = filtrar();
 
       if (lista.length === 0) {
-        tabla.innerHTML = '<tr><td colspan="6">No hay reservas.</td></tr>';
+        tabla.innerHTML = '<tr><td colspan="5">No hay reservas.</td></tr>';
         mostrarOcupacion();
         return;
       }
@@ -245,7 +229,6 @@
             "<td>" + textoFecha(reserva.inicio) + "</td>" +
             "<td>" + textoFecha(reserva.fin) + "</td>" +
             '<td class="estado">' + etiquetaEstado(reserva.estado) + "</td>" +
-            "<td>" + botones(reserva) + "</td>" +
             "</tr>"
           );
         })
@@ -253,54 +236,6 @@
 
       mostrarOcupacion();
     }
-
-    function cambiarEstado(id, estado) {
-      if (USE_FAKE_DATA) {
-        const reserva = reservas.find(function (item) {
-          return item.id === id;
-        });
-
-        if (reserva) {
-          reserva.estado = estado;
-        }
-
-        return Promise.resolve();
-      }
-
-      return fetch("/api/admin/reservas/" + id + "/estado", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ estado: estado })
-      }).then(function (respuesta) {
-        if (!respuesta.ok) {
-          throw new Error("No se pudo cambiar el estado.");
-        }
-
-        const reserva = reservas.find(function (item) {
-          return item.id === id;
-        });
-
-        if (reserva) {
-          reserva.estado = estado;
-        }
-      });
-    }
-
-    tabla.addEventListener("click", function (evento) {
-      const boton = evento.target.closest("button[data-id]");
-
-      if (!boton) {
-        return;
-      }
-
-      boton.disabled = true;
-
-      cambiarEstado(Number(boton.dataset.id), boton.dataset.estado)
-        .then(mostrarReservas)
-        .catch(function () {
-          boton.disabled = false;
-        });
-    });
 
     sedeSelect.addEventListener("change", mostrarReservas);
 
