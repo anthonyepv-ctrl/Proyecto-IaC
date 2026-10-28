@@ -165,7 +165,7 @@ Para garantizar que el merge de los diferentes módulos del equipo se realice si
 | **Contraseña RDS** | `random_password.db` | Kevin |
 | **Subnet Group RDS**| `aws_db_subnet_group.this` | Kevin |
 | **Instancia RDS** | `aws_db_instance.this` | Kevin |
-| **Lambdas** | `aws_lambda_function.disponibilidad`, `registrar`, `expandir`, `db_init` | Aldair |
+| **Lambdas** | `aws_lambda_function.disponibilidad`, `registrar`, `db_init` | Aldair |
 | **API Gateway** | `aws_api_gateway_rest_api.this`, `aws_api_gateway_stage.this` | Alberth |
 | **Bucket Frontend** | `aws_s3_bucket.frontend` | Alberth |
 | **CloudFront** | `aws_cloudfront_distribution.this` | Alberth |
