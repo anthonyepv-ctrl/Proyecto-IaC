@@ -16,7 +16,9 @@ foreach ($fn in $functions) {
     New-Item -ItemType Directory -Path $stage | Out-Null
 
     $common = Join-Path $backend "common"
-    if (Test-Path $common) { Copy-Item (Join-Path $common "*") $stage -Recurse }
+    if (Test-Path $common) {
+        Copy-Item $common $stage -Recurse -Force
+    }
     Copy-Item (Join-Path $src "*") $stage -Recurse -Force
 
     $req = Join-Path $src "requirements.txt"
