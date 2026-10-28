@@ -1,0 +1,35 @@
+name: Pipeline Demo - Hello World y Lectura de Archivos
+
+run-name: ${{github.actor}} esta ejecutando un pipeline
+on: [push]
+
+jobs:
+  ejecutar-pipeline:
+    name: pipeline Hello World y Lectura
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repositorio
+        uses: actions/checkout@v6
+
+      - name: Saludar-Hellow World
+        run: |
+          echo " ¡Hola Mundo! "
+          echo " Proyecto: TuCochera - Infraestructura como Código"
+
+      - name: Lectura de archivos del proyecto
+        run: |
+          echo "Listar los archivos del repositorio"
+          ls -la
+
+          echo "Leer las primeras 15 líneas del README.md"
+          head -n 15 README.md
+
+          echo "Leer el archivo de network de Terraform"
+          cat terraform/network.tf
+
+      - name: Uso de Secrets
+        env:
+          PRUEBA_SECRETO: ${{ secrets.PRESENTACION }}
+        run: |
+          echo "Verificando lectura de secreto de GitHub Actions, ${PRUEBA_SECRETO}. ${{ secrets.PRESENTACION }}"
