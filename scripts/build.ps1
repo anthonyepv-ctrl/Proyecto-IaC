@@ -3,7 +3,7 @@ $ErrorActionPreference = "Stop"
 $root    = Split-Path -Parent $PSScriptRoot
 $backend = Join-Path $root "app/backend"
 $build   = Join-Path $root "build"
-$functions = @("disponibilidad", "registrar", "expandir", "db_init")
+$functions = @("disponibilidad", "registrar", "db_init")
 
 if (Test-Path $build) { Remove-Item $build -Recurse -Force }
 New-Item -ItemType Directory -Path $build | Out-Null
