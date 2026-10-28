@@ -143,13 +143,12 @@ terraform destroy
 | GET | `/api/sedes` | Cliente | — | `{ "sedes": [...] }` |
 | GET | `/api/disponibilidad` | Cliente | `sede_id`, `inicio`, `fin` | `{ "disponibles": n }` |
 | POST | `/api/reservas` | Cliente | `{ sede_id, placa, inicio, fin }` | `201 { id }` |
-| PATCH | `/api/reservas/{id}/expandir` | Cliente | `{ minutos }` | `200 { fin }` |
-| GET | `/api/admin/reservas` | Recepcionista | `sede_id` (opcional) | `{ "reservas": [...] }` |
-| PATCH | `/api/admin/reservas/{id}/estado` | Recepcionista | `{ estado }` | `200 { ok: true }` |
 
 Estados de una reserva: `activa`, `en_curso`, `finalizada`, `cancelada`.
 
-El panel de recepción del MVP no tiene autenticación. Cognito queda para una fase posterior.
+El MVP solo expone consulta y reserva. Expandir/expirar reservas y el panel de recepción con datos reales quedan para una fase posterior.
+
+El panel de recepción es un prototipo de consulta con datos de prueba. Su API y su autenticación quedan para una fase posterior.
 
 ---
 
