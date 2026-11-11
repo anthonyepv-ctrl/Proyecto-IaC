@@ -31,11 +31,19 @@ resource "aws_api_gateway_resource" "reservas" {
   path_part   = "reservas"
 }
 
+resource "aws_api_gateway_request_validator" "this" {
+  rest_api_id                 = aws_api_gateway_rest_api.this.id
+  name                        = "${local.name}-validator"
+  validate_request_body       = true
+  validate_request_parameters = true  
+}
+
 resource "aws_api_gateway_method" "sedes_get" {
   rest_api_id   = aws_api_gateway_rest_api.this.id
   resource_id   = aws_api_gateway_resource.sedes.id
   http_method   = "GET"
   authorization = "NONE"
+  request_validator_id = aws_api_gateway_request_validator.this.id
 }
 
 resource "aws_api_gateway_method" "disponibilidad_get" {
@@ -43,6 +51,7 @@ resource "aws_api_gateway_method" "disponibilidad_get" {
   resource_id   = aws_api_gateway_resource.disponibilidad.id
   http_method   = "GET"
   authorization = "NONE"
+  request_validator_id = aws_api_gateway_request_validator.this.id
 }
 
 resource "aws_api_gateway_method" "reservas_post" {
@@ -50,6 +59,7 @@ resource "aws_api_gateway_method" "reservas_post" {
   resource_id   = aws_api_gateway_resource.reservas.id
   http_method   = "POST"
   authorization = "NONE"
+  request_validator_id = aws_api_gateway_request_validator.this.id
 }
 
 resource "aws_api_gateway_integration" "sedes_get" {
@@ -110,6 +120,7 @@ resource "aws_api_gateway_deployment" "this" {
       aws_api_gateway_integration.sedes_get.id,
       aws_api_gateway_integration.disponibilidad_get.id,
       aws_api_gateway_integration.reservas_post.id,
+      aws_api_gateway_request_validator.this.id
     ]))
   }
 
