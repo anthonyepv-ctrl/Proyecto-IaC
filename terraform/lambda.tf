@@ -50,6 +50,9 @@ resource "aws_lambda_function" "disponibilidad" {
     subnet_ids         = [aws_subnet.app_a.id]
     security_group_ids = [aws_security_group.lambda.id]
   }
+    tracing_config {
+    mode = "Active"
+  }
 
   environment {
     variables = local.lambda_env
@@ -80,6 +83,9 @@ resource "aws_lambda_function" "registrar" {
     subnet_ids         = [aws_subnet.app_a.id]
     security_group_ids = [aws_security_group.lambda.id]
   }
+    tracing_config {
+    mode = "Active"
+  }
 
   environment {
     variables = local.lambda_env
@@ -109,6 +115,9 @@ resource "aws_lambda_function" "db_init" {
   vpc_config {
     subnet_ids         = [aws_subnet.app_a.id]
     security_group_ids = [aws_security_group.lambda.id]
+  }
+    tracing_config {
+    mode = "Active"
   }
 
   environment {
