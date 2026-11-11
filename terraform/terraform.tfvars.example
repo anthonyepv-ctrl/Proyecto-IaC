@@ -1,15 +1,8 @@
-# ==============================================================================
-# Archivo de ejemplo para configuración de variables locales
-# Copiar este archivo a terraform.tfvars y ajustar los valores:
-#   cp terraform.tfvars.example terraform.tfvars
-# NOTA: terraform.tfvars está en el .gitignore y NUNCA debe subirse al repo.
-# ==============================================================================
-
 aws_region  = "us-east-1"
 aws_profile = "default"
 project     = "tucochera"
 environment = "dev"
-
+Copy-Item terraform.tfvars.example terraform.tfvars
 # Red
 vpc_cidr           = "10.0.0.0/16"
 availability_zones = ["us-east-1a", "us-east-1b"]
