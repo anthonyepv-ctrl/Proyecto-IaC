@@ -38,7 +38,7 @@ resource "aws_lambda_function" "disponibilidad" {
   role          = aws_iam_role.lambda.arn
   runtime       = var.lambda_runtime
   handler       = "handler.lambda_handler"
-  timeout       = var.lambda_timeout
+  timeout       = var.lambda_timeout_consulta
   memory_size   = var.lambda_memory_size
 
   filename         = "${path.module}/../build/disponibilidad.zip"
