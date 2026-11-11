@@ -31,6 +31,27 @@ resource "aws_s3_bucket_public_access_block" "frontend" {
   restrict_public_buckets = true
 }
 
+resource "aws_s3_bucket_versioning" "frontend" {
+  bucket = aws_s3_bucket.frontend.id
+
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+
+resource "aws_s3_bucket_server_side_encryption_configuration" "frontend" {
+  bucket = aws_s3_bucket.frontend.id
+
+  rule {
+    bucket_key_enabled = true
+
+    apply_server_side_encryption_by_default {
+      sse_algorithm     = "aws:kms"
+      kms_master_key_id = aws_kms_key.this.arn
+    }
+  }
+}
+
 resource "aws_cloudfront_origin_access_control" "frontend" {
   name                              = "${local.name}-frontend-oac"
   description                       = "OAC para el frontend de TuCochera"
@@ -98,6 +119,23 @@ resource "aws_cloudfront_distribution" "this" {
 }
 
 data "aws_iam_policy_document" "frontend" {
+  statement {
+    sid       = "DenyInsecureTransport"
+    effect    = "Deny"
+    actions   = ["s3:*"]
+    resources = [aws_s3_bucket.frontend.arn, "${aws_s3_bucket.frontend.arn}/*"]
+
+    principals {
+      type        = "*"
+      identifiers = ["*"]
+    }
+
+    condition {
+      test     = "Bool"
+      variable = "aws:SecureTransport"
+      values   = ["false"]
+    }
+  }
   statement {
     sid       = "AllowCloudFrontServicePrincipalReadOnly"
     actions   = ["s3:GetObject"]
