@@ -28,9 +28,10 @@ resource "aws_db_instance" "this" {
   backup_retention_period    = 35
   backup_window              = "08:00-09:00"
   skip_final_snapshot        = true
-  deletion_protection        = false
+  deletion_protection        = true
   apply_immediately          = true
   auto_minor_version_upgrade = true
+    enabled_cloudwatch_logs_exports = ["postgresql", "upgrade"]
 }
 
 output "rds_address" {
