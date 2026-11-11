@@ -73,7 +73,7 @@ data "aws_iam_policy_document" "kms" {
     condition {
       test     = "StringEquals"
       variable = "AWS:SourceArn"
-      values = ["arn:aws:cloudfront::${data.aws_caller_identity.current.account_id}:distribution/*"]
+      values   = ["arn:aws:cloudfront::${data.aws_caller_identity.current.account_id}:distribution/*"]
     }
   }
 }

@@ -23,7 +23,6 @@ resource "aws_db_instance" "this" {
   password                   = random_password.db.result
   db_subnet_group_name       = aws_db_subnet_group.this.name
   vpc_security_group_ids     = [aws_security_group.rds.id]
-  availability_zone          = local.az_a
   multi_az                   = true
   publicly_accessible        = false
   backup_retention_period    = 35
