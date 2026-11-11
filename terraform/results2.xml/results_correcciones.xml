@@ -1,0 +1,1171 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="40" tests="186" time="0.0">
+	<testsuite disabled="0" errors="0" failures="40" name="terraform scan" skipped="0" tests="186" time="0">
+		<properties>
+			<property name="directory" value="['/tf']"/>
+			<property name="add_check" value="False"/>
+			<property name="list" value="False"/>
+			<property name="output" value="['junitxml']"/>
+			<property name="output_file_path" value="results2.xml"/>
+			<property name="output_bc_ids" value="False"/>
+			<property name="include_all_checkov_policies" value="True"/>
+			<property name="quiet" value="False"/>
+			<property name="compact" value="False"/>
+			<property name="framework" value="['all']"/>
+			<property name="skip_framework" value="[]"/>
+			<property name="run_all_external_checks" value="False"/>
+			<property name="soft_fail" value="False"/>
+			<property name="skip_results_upload" value="False"/>
+			<property name="repo_id" value="cli_repo/tf"/>
+			<property name="branch" value="master"/>
+			<property name="skip_download" value="False"/>
+			<property name="use_enforcement_rules" value="False"/>
+			<property name="external_modules_download_path" value=".external_modules"/>
+			<property name="evaluate_variables" value="True"/>
+			<property name="no_cert_verify" value="False"/>
+			<property name="create_baseline" value="False"/>
+			<property name="output_baseline_as_skipped" value="False"/>
+			<property name="secrets_scan_file_type" value="[]"/>
+			<property name="enable_secret_scan_all_files" value="False"/>
+			<property name="block_list_secret_scan" value="[]"/>
+			<property name="summary_position" value="top"/>
+			<property name="skip_resources_without_violations" value="False"/>
+			<property name="deep_analysis" value="False"/>
+			<property name="no_fail_on_crash" value="False"/>
+			<property name="mask" value="defaultdict(&lt;class 'set'&gt;, {})"/>
+			<property name="scan_secrets_history" value="False"/>
+			<property name="secrets_history_timeout" value="12h"/>
+			<property name="custom_tool_name" value="Checkov"/>
+		</properties>
+		<testcase name="[NONE][CKV2_AWS_70] Ensure API gateway method has authorization or API key set" classname="/api.tf.aws_api_gateway_method.sedes_get" file="/api.tf"/>
+		<testcase name="[NONE][CKV2_AWS_70] Ensure API gateway method has authorization or API key set" classname="/api.tf.aws_api_gateway_method.disponibilidad_get" file="/api.tf"/>
+		<testcase name="[NONE][CKV2_AWS_70] Ensure API gateway method has authorization or API key set" classname="/api.tf.aws_api_gateway_method.reservas_post" file="/api.tf"/>
+		<testcase name="[NONE][CKV_AWS_364] Ensure that AWS Lambda function permissions delegated to AWS services are limited by SourceArn or SourceAccount" classname="/api.tf.aws_lambda_permission.api_disponibilidad" file="/api.tf"/>
+		<testcase name="[NONE][CKV_AWS_301] Ensure that AWS Lambda function is not publicly accessible" classname="/api.tf.aws_lambda_permission.api_disponibilidad" file="/api.tf"/>
+		<testcase name="[NONE][CKV_AWS_364] Ensure that AWS Lambda function permissions delegated to AWS services are limited by SourceArn or SourceAccount" classname="/api.tf.aws_lambda_permission.api_registrar" file="/api.tf"/>
+		<testcase name="[NONE][CKV_AWS_301] Ensure that AWS Lambda function is not publicly accessible" classname="/api.tf.aws_lambda_permission.api_registrar" file="/api.tf"/>
+		<testcase name="[NONE][CKV_AWS_217] Ensure Create before destroy for API deployments" classname="/api.tf.aws_api_gateway_deployment.this" file="/api.tf"/>
+		<testcase name="[NONE][CKV_AWS_73] Ensure API Gateway has X-Ray Tracing enabled" classname="/api.tf.aws_api_gateway_stage.this" file="/api.tf"/>
+		<testcase name="[NONE][CKV_AWS_276] Ensure Data Trace is not enabled in API Gateway Method Settings" classname="/api.tf.aws_api_gateway_method_settings.this" file="/api.tf"/>
+		<testcase name="[NONE][CKV_AWS_308] Ensure API Gateway method setting caching is set to encrypted" classname="/api.tf.aws_api_gateway_method_settings.this" file="/api.tf"/>
+		<testcase name="[NONE][CKV_AWS_157] Ensure that RDS instances have Multi-AZ enabled" classname="/database.tf.aws_db_instance.this" file="/database.tf"/>
+		<testcase name="[NONE][CKV_AWS_388] Ensure AWS Aurora PostgreSQL is not exposed to local file read vulnerability" classname="/database.tf.aws_db_instance.this" file="/database.tf"/>
+		<testcase name="[NONE][CKV_AWS_354] Ensure RDS Performance Insights are encrypted using KMS CMKs" classname="/database.tf.aws_db_instance.this" file="/database.tf"/>
+		<testcase name="[NONE][CKV_AWS_133] Ensure that RDS instances has backup policy" classname="/database.tf.aws_db_instance.this" file="/database.tf"/>
+		<testcase name="[NONE][CKV_AWS_16] Ensure all data stored in the RDS is securely encrypted at rest" classname="/database.tf.aws_db_instance.this" file="/database.tf"/>
+		<testcase name="[NONE][CKV_AWS_211] Ensure RDS uses a modern CaCert" classname="/database.tf.aws_db_instance.this" file="/database.tf"/>
+		<testcase name="[NONE][CKV_AWS_17] Ensure all data stored in RDS is not publicly accessible" classname="/database.tf.aws_db_instance.this" file="/database.tf"/>
+		<testcase name="[NONE][CKV_AWS_226] Ensure DB instance gets all minor upgrades automatically" classname="/database.tf.aws_db_instance.this" file="/database.tf"/>
+		<testcase name="[NONE][CKV_AWS_129] Ensure that respective logs of Amazon Relational Database Service (Amazon RDS) are enabled" classname="/database.tf.aws_db_instance.this" file="/database.tf"/>
+		<testcase name="[NONE][CKV_AWS_293] Ensure that AWS database instances have deletion protection enabled" classname="/database.tf.aws_db_instance.this" file="/database.tf"/>
+		<testcase name="[NONE][CKV_AWS_93] Ensure S3 bucket policy does not lockout all but root user. (Prevent lockouts needing root account fixes)" classname="/frontend.tf.aws_s3_bucket.frontend" file="/frontend.tf"/>
+		<testcase name="[NONE][CKV_AWS_55] Ensure S3 bucket has ignore public ACLs enabled" classname="/frontend.tf.aws_s3_bucket_public_access_block.frontend" file="/frontend.tf"/>
+		<testcase name="[NONE][CKV_AWS_56] Ensure S3 bucket has 'restrict_public_buckets' enabled" classname="/frontend.tf.aws_s3_bucket_public_access_block.frontend" file="/frontend.tf"/>
+		<testcase name="[NONE][CKV_AWS_53] Ensure S3 bucket has block public ACLS enabled" classname="/frontend.tf.aws_s3_bucket_public_access_block.frontend" file="/frontend.tf"/>
+		<testcase name="[NONE][CKV_AWS_54] Ensure S3 bucket has block public policy enabled" classname="/frontend.tf.aws_s3_bucket_public_access_block.frontend" file="/frontend.tf"/>
+		<testcase name="[NONE][CKV_AWS_259] Ensure CloudFront response header policy enforces Strict Transport Security" classname="/frontend.tf.aws_cloudfront_response_headers_policy.security_headers" file="/frontend.tf"/>
+		<testcase name="[NONE][CKV_AWS_374] Ensure AWS CloudFront web distribution has geo restriction enabled" classname="/frontend.tf.aws_cloudfront_distribution.this" file="/frontend.tf"/>
+		<testcase name="[NONE][CKV_AWS_305] Ensure CloudFront distribution has a default root object configured" classname="/frontend.tf.aws_cloudfront_distribution.this" file="/frontend.tf"/>
+		<testcase name="[NONE][CKV_AWS_216] Ensure CloudFront distribution is enabled" classname="/frontend.tf.aws_cloudfront_distribution.this" file="/frontend.tf"/>
+		<testcase name="[NONE][CKV_AWS_34] Ensure CloudFront distribution ViewerProtocolPolicy is set to HTTPS" classname="/frontend.tf.aws_cloudfront_distribution.this" file="/frontend.tf"/>
+		<testcase name="[NONE][CKV_AWS_93] Ensure S3 bucket policy does not lockout all but root user. (Prevent lockouts needing root account fixes)" classname="/frontend.tf.aws_s3_bucket_policy.frontend" file="/frontend.tf"/>
+		<testcase name="[NONE][CKV_AWS_1] Ensure IAM policies that allow full &quot;*-*&quot; administrative privileges are not created" classname="/frontend.tf.aws_iam_policy_document.frontend" file="/frontend.tf"/>
+		<testcase name="[NONE][CKV_AWS_110] Ensure IAM policies does not allow privilege escalation" classname="/frontend.tf.aws_iam_policy_document.frontend" file="/frontend.tf"/>
+		<testcase name="[NONE][CKV_AWS_108] Ensure IAM policies does not allow data exfiltration" classname="/frontend.tf.aws_iam_policy_document.frontend" file="/frontend.tf"/>
+		<testcase name="[NONE][CKV_AWS_111] Ensure IAM policies does not allow write access without constraints" classname="/frontend.tf.aws_iam_policy_document.frontend" file="/frontend.tf"/>
+		<testcase name="[NONE][CKV_AWS_109] Ensure IAM policies does not allow permissions management / resource exposure without constraints" classname="/frontend.tf.aws_iam_policy_document.frontend" file="/frontend.tf"/>
+		<testcase name="[NONE][CKV_AWS_356] Ensure no IAM policies documents allow &quot;*&quot; as a statement's resource for restrictable actions" classname="/frontend.tf.aws_iam_policy_document.frontend" file="/frontend.tf"/>
+		<testcase name="[NONE][CKV_AWS_107] Ensure IAM policies does not allow credentials exposure" classname="/frontend.tf.aws_iam_policy_document.frontend" file="/frontend.tf"/>
+		<testcase name="[NONE][CKV_AWS_49] Ensure no IAM policies documents allow &quot;*&quot; as a statement's actions" classname="/frontend.tf.aws_iam_policy_document.frontend" file="/frontend.tf"/>
+		<testcase name="[NONE][CKV_AWS_358] Ensure AWS GitHub Actions OIDC authorization policies only allow safe claims and claim order" classname="/frontend.tf.aws_iam_policy_document.frontend" file="/frontend.tf"/>
+		<testcase name="[NONE][CKV_AWS_283] Ensure no IAM policies documents allow ALL or any AWS principal permissions to the resource" classname="/frontend.tf.aws_iam_policy_document.frontend" file="/frontend.tf"/>
+		<testcase name="[NONE][CKV_AWS_393] Ensure AWS GitHub Actions OIDC authorization policies only allow safe claims and claim order on IAM role" classname="/iam.tf.aws_iam_role.lambda" file="/iam.tf"/>
+		<testcase name="[NONE][CKV_AWS_274] Disallow IAM roles, users, and groups from using the AWS AdministratorAccess policy" classname="/iam.tf.aws_iam_role.lambda" file="/iam.tf"/>
+		<testcase name="[NONE][CKV_AWS_61] Ensure AWS IAM policy does not allow assume role permission across all services" classname="/iam.tf.aws_iam_role.lambda" file="/iam.tf"/>
+		<testcase name="[NONE][CKV_AWS_60] Ensure IAM role allows only specific services or principals to assume it" classname="/iam.tf.aws_iam_role.lambda" file="/iam.tf"/>
+		<testcase name="[NONE][CKV_AWS_274] Disallow IAM roles, users, and groups from using the AWS AdministratorAccess policy" classname="/iam.tf.aws_iam_role_policy_attachment.lambda_vpc" file="/iam.tf"/>
+		<testcase name="[NONE][CKV_AWS_274] Disallow IAM roles, users, and groups from using the AWS AdministratorAccess policy" classname="/iam.tf.aws_iam_role_policy_attachment.lambda_xray" file="/iam.tf"/>
+		<testcase name="[NONE][CKV_AWS_1] Ensure IAM policies that allow full &quot;*-*&quot; administrative privileges are not created" classname="/iam.tf.aws_iam_policy_document.lambda_assume" file="/iam.tf"/>
+		<testcase name="[NONE][CKV_AWS_110] Ensure IAM policies does not allow privilege escalation" classname="/iam.tf.aws_iam_policy_document.lambda_assume" file="/iam.tf"/>
+		<testcase name="[NONE][CKV_AWS_108] Ensure IAM policies does not allow data exfiltration" classname="/iam.tf.aws_iam_policy_document.lambda_assume" file="/iam.tf"/>
+		<testcase name="[NONE][CKV_AWS_111] Ensure IAM policies does not allow write access without constraints" classname="/iam.tf.aws_iam_policy_document.lambda_assume" file="/iam.tf"/>
+		<testcase name="[NONE][CKV_AWS_109] Ensure IAM policies does not allow permissions management / resource exposure without constraints" classname="/iam.tf.aws_iam_policy_document.lambda_assume" file="/iam.tf"/>
+		<testcase name="[NONE][CKV_AWS_356] Ensure no IAM policies documents allow &quot;*&quot; as a statement's resource for restrictable actions" classname="/iam.tf.aws_iam_policy_document.lambda_assume" file="/iam.tf"/>
+		<testcase name="[NONE][CKV_AWS_107] Ensure IAM policies does not allow credentials exposure" classname="/iam.tf.aws_iam_policy_document.lambda_assume" file="/iam.tf"/>
+		<testcase name="[NONE][CKV_AWS_49] Ensure no IAM policies documents allow &quot;*&quot; as a statement's actions" classname="/iam.tf.aws_iam_policy_document.lambda_assume" file="/iam.tf"/>
+		<testcase name="[NONE][CKV_AWS_358] Ensure AWS GitHub Actions OIDC authorization policies only allow safe claims and claim order" classname="/iam.tf.aws_iam_policy_document.lambda_assume" file="/iam.tf"/>
+		<testcase name="[NONE][CKV_AWS_283] Ensure no IAM policies documents allow ALL or any AWS principal permissions to the resource" classname="/iam.tf.aws_iam_policy_document.lambda_assume" file="/iam.tf"/>
+		<testcase name="[NONE][CKV_AWS_158] Ensure that CloudWatch Log Group is encrypted by KMS" classname="/lambda.tf.aws_cloudwatch_log_group.disponibilidad" file="/lambda.tf"/>
+		<testcase name="[NONE][CKV_AWS_66] Ensure that CloudWatch Log Group specifies retention days" classname="/lambda.tf.aws_cloudwatch_log_group.disponibilidad" file="/lambda.tf"/>
+		<testcase name="[NONE][CKV_AWS_158] Ensure that CloudWatch Log Group is encrypted by KMS" classname="/lambda.tf.aws_cloudwatch_log_group.registrar" file="/lambda.tf"/>
+		<testcase name="[NONE][CKV_AWS_66] Ensure that CloudWatch Log Group specifies retention days" classname="/lambda.tf.aws_cloudwatch_log_group.registrar" file="/lambda.tf"/>
+		<testcase name="[NONE][CKV_AWS_158] Ensure that CloudWatch Log Group is encrypted by KMS" classname="/lambda.tf.aws_cloudwatch_log_group.db_init" file="/lambda.tf"/>
+		<testcase name="[NONE][CKV_AWS_66] Ensure that CloudWatch Log Group specifies retention days" classname="/lambda.tf.aws_cloudwatch_log_group.db_init" file="/lambda.tf"/>
+		<testcase name="[NONE][CKV_AWS_45] Ensure no hard-coded secrets exist in lambda environment" classname="/lambda.tf.aws_lambda_function.disponibilidad" file="/lambda.tf"/>
+		<testcase name="[NONE][CKV_AWS_115] Ensure that AWS Lambda function is configured for function-level concurrent execution limit" classname="/lambda.tf.aws_lambda_function.disponibilidad" file="/lambda.tf"/>
+		<testcase name="[NONE][CKV_AWS_363] Ensure Lambda Runtime is not deprecated" classname="/lambda.tf.aws_lambda_function.disponibilidad" file="/lambda.tf"/>
+		<testcase name="[NONE][CKV_AWS_117] Ensure that AWS Lambda function is configured inside a VPC" classname="/lambda.tf.aws_lambda_function.disponibilidad" file="/lambda.tf"/>
+		<testcase name="[NONE][CKV_AWS_50] X-Ray tracing is enabled for Lambda" classname="/lambda.tf.aws_lambda_function.disponibilidad" file="/lambda.tf"/>
+		<testcase name="[NONE][CKV_AWS_45] Ensure no hard-coded secrets exist in lambda environment" classname="/lambda.tf.aws_lambda_function.registrar" file="/lambda.tf"/>
+		<testcase name="[NONE][CKV_AWS_115] Ensure that AWS Lambda function is configured for function-level concurrent execution limit" classname="/lambda.tf.aws_lambda_function.registrar" file="/lambda.tf"/>
+		<testcase name="[NONE][CKV_AWS_363] Ensure Lambda Runtime is not deprecated" classname="/lambda.tf.aws_lambda_function.registrar" file="/lambda.tf"/>
+		<testcase name="[NONE][CKV_AWS_117] Ensure that AWS Lambda function is configured inside a VPC" classname="/lambda.tf.aws_lambda_function.registrar" file="/lambda.tf"/>
+		<testcase name="[NONE][CKV_AWS_50] X-Ray tracing is enabled for Lambda" classname="/lambda.tf.aws_lambda_function.registrar" file="/lambda.tf"/>
+		<testcase name="[NONE][CKV_AWS_45] Ensure no hard-coded secrets exist in lambda environment" classname="/lambda.tf.aws_lambda_function.db_init" file="/lambda.tf"/>
+		<testcase name="[NONE][CKV_AWS_115] Ensure that AWS Lambda function is configured for function-level concurrent execution limit" classname="/lambda.tf.aws_lambda_function.db_init" file="/lambda.tf"/>
+		<testcase name="[NONE][CKV_AWS_363] Ensure Lambda Runtime is not deprecated" classname="/lambda.tf.aws_lambda_function.db_init" file="/lambda.tf"/>
+		<testcase name="[NONE][CKV_AWS_117] Ensure that AWS Lambda function is configured inside a VPC" classname="/lambda.tf.aws_lambda_function.db_init" file="/lambda.tf"/>
+		<testcase name="[NONE][CKV_AWS_50] X-Ray tracing is enabled for Lambda" classname="/lambda.tf.aws_lambda_function.db_init" file="/lambda.tf"/>
+		<testcase name="[NONE][CKV_AWS_130] Ensure VPC subnets do not assign public IP by default" classname="/network.tf.aws_subnet.app_a" file="/network.tf"/>
+		<testcase name="[NONE][CKV_AWS_130] Ensure VPC subnets do not assign public IP by default" classname="/network.tf.aws_subnet.app_b" file="/network.tf"/>
+		<testcase name="[NONE][CKV_AWS_130] Ensure VPC subnets do not assign public IP by default" classname="/network.tf.aws_subnet.db_a" file="/network.tf"/>
+		<testcase name="[NONE][CKV_AWS_130] Ensure VPC subnets do not assign public IP by default" classname="/network.tf.aws_subnet.db_b" file="/network.tf"/>
+		<testcase name="[NONE][CKV_AWS_41] Ensure no hard coded AWS access key and secret key exists in provider" classname="/providers.tf.aws.default" file="/providers.tf"/>
+		<testcase name="[NONE][CKV_AWS_25] Ensure no security groups allow ingress from 0.0.0.0:0 to port 3389" classname="/security.tf.aws_security_group.lambda" file="/security.tf"/>
+		<testcase name="[NONE][CKV_AWS_382] Ensure no security groups allow egress from 0.0.0.0:0 to port -1" classname="/security.tf.aws_security_group.lambda" file="/security.tf"/>
+		<testcase name="[NONE][CKV_AWS_260] Ensure no security groups allow ingress from 0.0.0.0:0 to port 80" classname="/security.tf.aws_security_group.lambda" file="/security.tf"/>
+		<testcase name="[NONE][CKV_AWS_24] Ensure no security groups allow ingress from 0.0.0.0:0 to port 22" classname="/security.tf.aws_security_group.lambda" file="/security.tf"/>
+		<testcase name="[NONE][CKV_AWS_277] Ensure no security groups allow ingress from 0.0.0.0:0 to port -1" classname="/security.tf.aws_security_group.lambda" file="/security.tf"/>
+		<testcase name="[NONE][CKV_AWS_23] Ensure every security group and rule has a description" classname="/security.tf.aws_security_group.lambda" file="/security.tf"/>
+		<testcase name="[NONE][CKV_AWS_25] Ensure no security groups allow ingress from 0.0.0.0:0 to port 3389" classname="/security.tf.aws_security_group.rds" file="/security.tf"/>
+		<testcase name="[NONE][CKV_AWS_382] Ensure no security groups allow egress from 0.0.0.0:0 to port -1" classname="/security.tf.aws_security_group.rds" file="/security.tf"/>
+		<testcase name="[NONE][CKV_AWS_260] Ensure no security groups allow ingress from 0.0.0.0:0 to port 80" classname="/security.tf.aws_security_group.rds" file="/security.tf"/>
+		<testcase name="[NONE][CKV_AWS_24] Ensure no security groups allow ingress from 0.0.0.0:0 to port 22" classname="/security.tf.aws_security_group.rds" file="/security.tf"/>
+		<testcase name="[NONE][CKV_AWS_277] Ensure no security groups allow ingress from 0.0.0.0:0 to port -1" classname="/security.tf.aws_security_group.rds" file="/security.tf"/>
+		<testcase name="[NONE][CKV_AWS_23] Ensure every security group and rule has a description" classname="/security.tf.aws_security_group.rds" file="/security.tf"/>
+		<testcase name="[NONE][CKV_AWS_382] Ensure no security groups allow egress from 0.0.0.0:0 to port -1" classname="/security.tf.aws_vpc_security_group_egress_rule.lambda_to_rds" file="/security.tf"/>
+		<testcase name="[NONE][CKV_AWS_23] Ensure every security group and rule has a description" classname="/security.tf.aws_vpc_security_group_egress_rule.lambda_to_rds" file="/security.tf"/>
+		<testcase name="[NONE][CKV_AWS_25] Ensure no security groups allow ingress from 0.0.0.0:0 to port 3389" classname="/security.tf.aws_vpc_security_group_ingress_rule.rds_from_lambda" file="/security.tf"/>
+		<testcase name="[NONE][CKV_AWS_260] Ensure no security groups allow ingress from 0.0.0.0:0 to port 80" classname="/security.tf.aws_vpc_security_group_ingress_rule.rds_from_lambda" file="/security.tf"/>
+		<testcase name="[NONE][CKV_AWS_24] Ensure no security groups allow ingress from 0.0.0.0:0 to port 22" classname="/security.tf.aws_vpc_security_group_ingress_rule.rds_from_lambda" file="/security.tf"/>
+		<testcase name="[NONE][CKV_AWS_277] Ensure no security groups allow ingress from 0.0.0.0:0 to port -1" classname="/security.tf.aws_vpc_security_group_ingress_rule.rds_from_lambda" file="/security.tf"/>
+		<testcase name="[NONE][CKV_AWS_23] Ensure every security group and rule has a description" classname="/security.tf.aws_vpc_security_group_ingress_rule.rds_from_lambda" file="/security.tf"/>
+		<testcase name="[NONE][CKV_AWS_7] Ensure rotation for customer created CMKs is enabled" classname="/security.tf.aws_kms_key.this" file="/security.tf"/>
+		<testcase name="[NONE][CKV_AWS_227] Ensure KMS key is enabled" classname="/security.tf.aws_kms_key.this" file="/security.tf"/>
+		<testcase name="[NONE][CKV_AWS_33] Ensure KMS key policy does not contain wildcard (*) principal" classname="/security.tf.aws_kms_key.this" file="/security.tf"/>
+		<testcase name="[NONE][CKV_AWS_1] Ensure IAM policies that allow full &quot;*-*&quot; administrative privileges are not created" classname="/security.tf.aws_iam_policy_document.kms" file="/security.tf"/>
+		<testcase name="[NONE][CKV_AWS_110] Ensure IAM policies does not allow privilege escalation" classname="/security.tf.aws_iam_policy_document.kms" file="/security.tf"/>
+		<testcase name="[NONE][CKV_AWS_108] Ensure IAM policies does not allow data exfiltration" classname="/security.tf.aws_iam_policy_document.kms" file="/security.tf"/>
+		<testcase name="[NONE][CKV_AWS_107] Ensure IAM policies does not allow credentials exposure" classname="/security.tf.aws_iam_policy_document.kms" file="/security.tf"/>
+		<testcase name="[NONE][CKV_AWS_49] Ensure no IAM policies documents allow &quot;*&quot; as a statement's actions" classname="/security.tf.aws_iam_policy_document.kms" file="/security.tf"/>
+		<testcase name="[NONE][CKV_AWS_358] Ensure AWS GitHub Actions OIDC authorization policies only allow safe claims and claim order" classname="/security.tf.aws_iam_policy_document.kms" file="/security.tf"/>
+		<testcase name="[NONE][CKV_AWS_283] Ensure no IAM policies documents allow ALL or any AWS principal permissions to the resource" classname="/security.tf.aws_iam_policy_document.kms" file="/security.tf"/>
+		<testcase name="[NONE][CKV2_AWS_11] Ensure VPC flow logging is enabled in all VPCs" classname="/network.tf.aws_vpc.this" file="/network.tf"/>
+		<testcase name="[NONE][CKV2_AWS_53] Ensure AWS API gateway request is validated" classname="/api.tf.aws_api_gateway_method.sedes_get" file="/api.tf"/>
+		<testcase name="[NONE][CKV2_AWS_53] Ensure AWS API gateway request is validated" classname="/api.tf.aws_api_gateway_method.disponibilidad_get" file="/api.tf"/>
+		<testcase name="[NONE][CKV2_AWS_53] Ensure AWS API gateway request is validated" classname="/api.tf.aws_api_gateway_method.reservas_post" file="/api.tf"/>
+		<testcase name="[NONE][CKV2_AWS_5] Ensure that Security Groups are attached to another resource" classname="/security.tf.aws_security_group.rds" file="/security.tf"/>
+		<testcase name="[NONE][CKV2_AWS_5] Ensure that Security Groups are attached to another resource" classname="/security.tf.aws_security_group.lambda" file="/security.tf"/>
+		<testcase name="[NONE][CKV_AWS_57] S3 Bucket has an ACL defined which allows public WRITE access." classname="/frontend.tf.aws_s3_bucket.frontend" file="/frontend.tf"/>
+		<testcase name="[NONE][CKV_AWS_21] Ensure all data stored in the S3 bucket have versioning enabled" classname="/frontend.tf.aws_s3_bucket.frontend" file="/frontend.tf"/>
+		<testcase name="[NONE][CKV2_AWS_35] AWS NAT Gateways should be utilized for the default route" classname="/network.tf.aws_route_table.app" file="/network.tf"/>
+		<testcase name="[NONE][CKV2_AWS_35] AWS NAT Gateways should be utilized for the default route" classname="/network.tf.aws_route_table.db" file="/network.tf"/>
+		<testcase name="[NONE][CKV_AWS_145] Ensure that S3 buckets are encrypted with KMS by default" classname="/frontend.tf.aws_s3_bucket.frontend" file="/frontend.tf"/>
+		<testcase name="[NONE][CKV_AWS_19] Ensure all data stored in the S3 bucket is securely encrypted at rest" classname="/frontend.tf.aws_s3_bucket.frontend" file="/frontend.tf"/>
+		<testcase name="[NONE][CKV2_AWS_75] Ensure no open CORS policy" classname="/lambda.tf.aws_lambda_function.disponibilidad" file="/lambda.tf"/>
+		<testcase name="[NONE][CKV2_AWS_75] Ensure no open CORS policy" classname="/lambda.tf.aws_lambda_function.registrar" file="/lambda.tf"/>
+		<testcase name="[NONE][CKV2_AWS_75] Ensure no open CORS policy" classname="/lambda.tf.aws_lambda_function.db_init" file="/lambda.tf"/>
+		<testcase name="[NONE][CKV2_AWS_69] Ensure AWS RDS database instance configured with encryption in transit" classname="/database.tf.aws_db_instance.this" file="/database.tf"/>
+		<testcase name="[NONE][CKV2_AWS_56] Ensure AWS Managed IAMFullAccess IAM policy is not used." classname="/iam.tf.aws_iam_role.lambda" file="/iam.tf"/>
+		<testcase name="[NONE][CKV2_AWS_56] Ensure AWS Managed IAMFullAccess IAM policy is not used." classname="/iam.tf.aws_iam_role_policy_attachment.lambda_vpc" file="/iam.tf"/>
+		<testcase name="[NONE][CKV2_AWS_56] Ensure AWS Managed IAMFullAccess IAM policy is not used." classname="/iam.tf.aws_iam_role_policy_attachment.lambda_xray" file="/iam.tf"/>
+		<testcase name="[NONE][CKV2_AWS_40] Ensure AWS IAM policy does not allow full IAM privileges" classname="/frontend.tf.aws_iam_policy_document.frontend" file="/frontend.tf"/>
+		<testcase name="[NONE][CKV2_AWS_40] Ensure AWS IAM policy does not allow full IAM privileges" classname="/iam.tf.aws_iam_policy_document.lambda_assume" file="/iam.tf"/>
+		<testcase name="[NONE][CKV2_AWS_40] Ensure AWS IAM policy does not allow full IAM privileges" classname="/security.tf.aws_iam_policy_document.kms" file="/security.tf"/>
+		<testcase name="[NONE][CKV2_AWS_32] Ensure CloudFront distribution has a response headers policy attached" classname="/frontend.tf.aws_cloudfront_distribution.this" file="/frontend.tf"/>
+		<testcase name="[NONE][CKV2_AWS_6] Ensure that S3 bucket has a Public Access block" classname="/frontend.tf.aws_s3_bucket.frontend" file="/frontend.tf"/>
+		<testcase name="[NONE][CKV2_AWS_64] Ensure KMS key Policy is defined" classname="/security.tf.aws_kms_key.this" file="/security.tf"/>
+		<testcase name="[NONE][CKV2_AWS_77] Ensure AWS API Gateway Rest API attached WAFv2 WebACL is configured with AMR for Log4j Vulnerability" classname="/api.tf.aws_api_gateway_stage.this" file="/api.tf"/>
+		<testcase name="[NONE][CKV2_AWS_72] Ensure AWS CloudFront origin protocol policy enforces HTTPS-only" classname="/frontend.tf.aws_cloudfront_distribution.this" file="/frontend.tf"/>
+		<testcase name="[NONE][CKV2_AWS_46] Ensure AWS CloudFront Distribution with S3 have Origin Access set to enabled" classname="/frontend.tf.aws_cloudfront_distribution.this" file="/frontend.tf"/>
+		<testcase name="[NONE][CKV2_AWS_44] Ensure AWS route table with VPC peering does not contain routes overly permissive to all traffic" classname="/network.tf.aws_route_table.app" file="/network.tf"/>
+		<testcase name="[NONE][CKV2_AWS_44] Ensure AWS route table with VPC peering does not contain routes overly permissive to all traffic" classname="/network.tf.aws_route_table.db" file="/network.tf"/>
+		<testcase name="[NONE][CKV2_AWS_54] Ensure AWS CloudFront distribution is using secure SSL protocols for HTTPS communication" classname="/frontend.tf.aws_cloudfront_distribution.this" file="/frontend.tf"/>
+		<testcase name="[NONE][CKV_AWS_20] S3 Bucket has an ACL defined which allows public READ access." classname="/frontend.tf.aws_s3_bucket.frontend" file="/frontend.tf"/>
+		<testcase name="[NONE][CKV2_AWS_12] Ensure the default security group of every VPC restricts all traffic" classname="/network.tf.aws_vpc.this" file="/network.tf"/>
+		<testcase name="[NONE][CKV_AWS_237] Ensure Create before destroy for API Gateway" classname="/api.tf.aws_api_gateway_rest_api.this" file="/api.tf">
+			<failure type="failure" message="Ensure Create before destroy for API Gateway">
+Resource: aws_api_gateway_rest_api.this
+File: /api.tf: 1-8
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-aws-api-gateway-enables-create-before-destroy
+
+		1 | resource &quot;aws_api_gateway_rest_api&quot; &quot;this&quot; {
+		2 |   name        = &quot;${local.name}-api&quot;
+		3 |   description = &quot;API REST del MVP TuCochera&quot;
+		4 | 
+		5 |   endpoint_configuration {
+		6 |     types = [&quot;REGIONAL&quot;]
+		7 |   }
+		8 | }
+</failure>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_59] Ensure there is no open access to back-end resources through API" classname="/api.tf.aws_api_gateway_method.sedes_get" file="/api.tf">
+			<failure type="failure" message="Ensure there is no open access to back-end resources through API">
+Resource: aws_api_gateway_method.sedes_get
+File: /api.tf: 41-47
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/public-policies/public-6-api-gateway-authorizer-set
+
+		41 | resource &quot;aws_api_gateway_method&quot; &quot;sedes_get&quot; {
+		42 |   rest_api_id   = aws_api_gateway_rest_api.this.id
+		43 |   resource_id   = aws_api_gateway_resource.sedes.id
+		44 |   http_method   = &quot;GET&quot;
+		45 |   authorization = &quot;NONE&quot;
+		46 |   request_validator_id = aws_api_gateway_request_validator.this.id
+		47 | }
+</failure>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_59] Ensure there is no open access to back-end resources through API" classname="/api.tf.aws_api_gateway_method.disponibilidad_get" file="/api.tf">
+			<failure type="failure" message="Ensure there is no open access to back-end resources through API">
+Resource: aws_api_gateway_method.disponibilidad_get
+File: /api.tf: 49-55
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/public-policies/public-6-api-gateway-authorizer-set
+
+		49 | resource &quot;aws_api_gateway_method&quot; &quot;disponibilidad_get&quot; {
+		50 |   rest_api_id   = aws_api_gateway_rest_api.this.id
+		51 |   resource_id   = aws_api_gateway_resource.disponibilidad.id
+		52 |   http_method   = &quot;GET&quot;
+		53 |   authorization = &quot;NONE&quot;
+		54 |   request_validator_id = aws_api_gateway_request_validator.this.id
+		55 | }
+</failure>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_59] Ensure there is no open access to back-end resources through API" classname="/api.tf.aws_api_gateway_method.reservas_post" file="/api.tf">
+			<failure type="failure" message="Ensure there is no open access to back-end resources through API">
+Resource: aws_api_gateway_method.reservas_post
+File: /api.tf: 57-63
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/public-policies/public-6-api-gateway-authorizer-set
+
+		57 | resource &quot;aws_api_gateway_method&quot; &quot;reservas_post&quot; {
+		58 |   rest_api_id   = aws_api_gateway_rest_api.this.id
+		59 |   resource_id   = aws_api_gateway_resource.reservas.id
+		60 |   http_method   = &quot;POST&quot;
+		61 |   authorization = &quot;NONE&quot;
+		62 |   request_validator_id = aws_api_gateway_request_validator.this.id
+		63 | }
+</failure>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_76] Ensure API Gateway has Access Logging enabled" classname="/api.tf.aws_api_gateway_stage.this" file="/api.tf">
+			<failure type="failure" message="Ensure API Gateway has Access Logging enabled">
+Resource: aws_api_gateway_stage.this
+File: /api.tf: 132-137
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/logging-17
+
+		132 | resource &quot;aws_api_gateway_stage&quot; &quot;this&quot; {
+		133 |   deployment_id = aws_api_gateway_deployment.this.id
+		134 |   rest_api_id   = aws_api_gateway_rest_api.this.id
+		135 |   stage_name    = var.environment
+		136 |   xray_tracing_enabled = true
+		137 | }
+</failure>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_120] Ensure API Gateway caching is enabled" classname="/api.tf.aws_api_gateway_stage.this" file="/api.tf">
+			<failure type="failure" message="Ensure API Gateway caching is enabled">
+Resource: aws_api_gateway_stage.this
+File: /api.tf: 132-137
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-api-gateway-caching-is-enabled
+
+		132 | resource &quot;aws_api_gateway_stage&quot; &quot;this&quot; {
+		133 |   deployment_id = aws_api_gateway_deployment.this.id
+		134 |   rest_api_id   = aws_api_gateway_rest_api.this.id
+		135 |   stage_name    = var.environment
+		136 |   xray_tracing_enabled = true
+		137 | }
+</failure>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_225] Ensure API Gateway method setting caching is enabled" classname="/api.tf.aws_api_gateway_method_settings.this" file="/api.tf">
+			<failure type="failure" message="Ensure API Gateway method setting caching is enabled">
+Resource: aws_api_gateway_method_settings.this
+File: /api.tf: 139-154
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-aws-api-gateway-method-settings-enable-caching
+
+		139 | resource &quot;aws_api_gateway_method_settings&quot; &quot;this&quot; {
+		140 |   rest_api_id = aws_api_gateway_rest_api.this.id
+		141 |   stage_name  = aws_api_gateway_stage.this.stage_name
+		142 |   method_path = &quot;*/*&quot;
+		143 | 
+		144 |   settings {
+		145 |     throttling_rate_limit  = var.api_throttle_rate_limit
+		146 |     throttling_burst_limit = var.api_throttle_burst_limit
+		147 |   }
+		148 | 
+		149 |   depends_on = [
+		150 |     aws_api_gateway_method.sedes_get,
+		151 |     aws_api_gateway_method.disponibilidad_get,
+		152 |     aws_api_gateway_method.reservas_post,
+		153 |   ]
+		154 | }
+</failure>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_118] Ensure that enhanced monitoring is enabled for Amazon RDS instances" classname="/database.tf.aws_db_instance.this" file="/database.tf">
+			<failure type="failure" message="Ensure that enhanced monitoring is enabled for Amazon RDS instances">
+Resource: aws_db_instance.this
+File: /database.tf: 12-35
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/ensure-that-enhanced-monitoring-is-enabled-for-amazon-rds-instances
+
+		12 | resource &quot;aws_db_instance&quot; &quot;this&quot; {
+		13 |   identifier                 = &quot;${local.name}-pg&quot;
+		14 |   engine                     = &quot;postgres&quot;
+		15 |   engine_version             = &quot;16&quot;
+		16 |   instance_class             = var.db_instance_class
+		17 |   allocated_storage          = var.db_allocated_storage
+		18 |   storage_type               = &quot;gp3&quot;
+		19 |   storage_encrypted          = true
+		20 |   kms_key_id                 = aws_kms_key.this.arn
+		21 |   db_name                    = var.db_name
+		22 |   username                   = var.db_username
+		23 |   password                   = random_password.db.result
+		24 |   db_subnet_group_name       = aws_db_subnet_group.this.name
+		25 |   vpc_security_group_ids     = [aws_security_group.rds.id]
+		26 |   multi_az                   = true
+		27 |   publicly_accessible        = false
+		28 |   backup_retention_period    = 35
+		29 |   backup_window              = &quot;08:00-09:00&quot;
+		30 |   skip_final_snapshot        = true
+		31 |   deletion_protection        = true
+		32 |   apply_immediately          = true
+		33 |   auto_minor_version_upgrade = true
+		34 |     enabled_cloudwatch_logs_exports = [&quot;postgresql&quot;, &quot;upgrade&quot;]
+		35 | }
+</failure>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_161] Ensure RDS database has IAM authentication enabled" classname="/database.tf.aws_db_instance.this" file="/database.tf">
+			<failure type="failure" message="Ensure RDS database has IAM authentication enabled">
+Resource: aws_db_instance.this
+File: /database.tf: 12-35
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/ensure-rds-database-has-iam-authentication-enabled
+
+		12 | resource &quot;aws_db_instance&quot; &quot;this&quot; {
+		13 |   identifier                 = &quot;${local.name}-pg&quot;
+		14 |   engine                     = &quot;postgres&quot;
+		15 |   engine_version             = &quot;16&quot;
+		16 |   instance_class             = var.db_instance_class
+		17 |   allocated_storage          = var.db_allocated_storage
+		18 |   storage_type               = &quot;gp3&quot;
+		19 |   storage_encrypted          = true
+		20 |   kms_key_id                 = aws_kms_key.this.arn
+		21 |   db_name                    = var.db_name
+		22 |   username                   = var.db_username
+		23 |   password                   = random_password.db.result
+		24 |   db_subnet_group_name       = aws_db_subnet_group.this.name
+		25 |   vpc_security_group_ids     = [aws_security_group.rds.id]
+		26 |   multi_az                   = true
+		27 |   publicly_accessible        = false
+		28 |   backup_retention_period    = 35
+		29 |   backup_window              = &quot;08:00-09:00&quot;
+		30 |   skip_final_snapshot        = true
+		31 |   deletion_protection        = true
+		32 |   apply_immediately          = true
+		33 |   auto_minor_version_upgrade = true
+		34 |     enabled_cloudwatch_logs_exports = [&quot;postgresql&quot;, &quot;upgrade&quot;]
+		35 | }
+</failure>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_353] Ensure that RDS instances have performance insights enabled" classname="/database.tf.aws_db_instance.this" file="/database.tf">
+			<failure type="failure" message="Ensure that RDS instances have performance insights enabled">
+Resource: aws_db_instance.this
+File: /database.tf: 12-35
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-353
+
+		12 | resource &quot;aws_db_instance&quot; &quot;this&quot; {
+		13 |   identifier                 = &quot;${local.name}-pg&quot;
+		14 |   engine                     = &quot;postgres&quot;
+		15 |   engine_version             = &quot;16&quot;
+		16 |   instance_class             = var.db_instance_class
+		17 |   allocated_storage          = var.db_allocated_storage
+		18 |   storage_type               = &quot;gp3&quot;
+		19 |   storage_encrypted          = true
+		20 |   kms_key_id                 = aws_kms_key.this.arn
+		21 |   db_name                    = var.db_name
+		22 |   username                   = var.db_username
+		23 |   password                   = random_password.db.result
+		24 |   db_subnet_group_name       = aws_db_subnet_group.this.name
+		25 |   vpc_security_group_ids     = [aws_security_group.rds.id]
+		26 |   multi_az                   = true
+		27 |   publicly_accessible        = false
+		28 |   backup_retention_period    = 35
+		29 |   backup_window              = &quot;08:00-09:00&quot;
+		30 |   skip_final_snapshot        = true
+		31 |   deletion_protection        = true
+		32 |   apply_immediately          = true
+		33 |   auto_minor_version_upgrade = true
+		34 |     enabled_cloudwatch_logs_exports = [&quot;postgresql&quot;, &quot;upgrade&quot;]
+		35 | }
+</failure>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_310] Ensure CloudFront distributions should have origin failover configured" classname="/frontend.tf.aws_cloudfront_distribution.this" file="/frontend.tf">
+			<failure type="failure" message="Ensure CloudFront distributions should have origin failover configured">
+Resource: aws_cloudfront_distribution.this
+File: /frontend.tf: 93-150
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-310
+
+		Code lines for this resource are too many. Please use IDE of your choice to review the file.</failure>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_174] Verify CloudFront Distribution Viewer Certificate is using TLS v1.2 or higher" classname="/frontend.tf.aws_cloudfront_distribution.this" file="/frontend.tf">
+			<failure type="failure" message="Verify CloudFront Distribution Viewer Certificate is using TLS v1.2 or higher">
+Resource: aws_cloudfront_distribution.this
+File: /frontend.tf: 93-150
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/bc-aws-networking-63
+
+		Code lines for this resource are too many. Please use IDE of your choice to review the file.</failure>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_68] CloudFront Distribution should have WAF enabled" classname="/frontend.tf.aws_cloudfront_distribution.this" file="/frontend.tf">
+			<failure type="failure" message="CloudFront Distribution should have WAF enabled">
+Resource: aws_cloudfront_distribution.this
+File: /frontend.tf: 93-150
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-general-27
+
+		Code lines for this resource are too many. Please use IDE of your choice to review the file.</failure>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_86] Ensure CloudFront distribution has Access Logging enabled" classname="/frontend.tf.aws_cloudfront_distribution.this" file="/frontend.tf">
+			<failure type="failure" message="Ensure CloudFront distribution has Access Logging enabled">
+Resource: aws_cloudfront_distribution.this
+File: /frontend.tf: 93-150
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/logging-20
+
+		Code lines for this resource are too many. Please use IDE of your choice to review the file.</failure>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_338] Ensure CloudWatch log groups retains logs for at least 1 year" classname="/lambda.tf.aws_cloudwatch_log_group.disponibilidad" file="/lambda.tf">
+			<failure type="failure" message="Ensure CloudWatch log groups retains logs for at least 1 year">
+Resource: aws_cloudwatch_log_group.disponibilidad
+File: /lambda.tf: 18-23
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-338
+
+		18 | resource &quot;aws_cloudwatch_log_group&quot; &quot;disponibilidad&quot; {
+		19 |   name              = &quot;/aws/lambda/${local.name}-disponibilidad&quot;
+		20 |   retention_in_days = var.log_retention_days
+		21 |   tags              = local.common_tags
+		22 |   kms_key_id        = aws_kms_key.this.arn
+		23 | }
+</failure>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_338] Ensure CloudWatch log groups retains logs for at least 1 year" classname="/lambda.tf.aws_cloudwatch_log_group.registrar" file="/lambda.tf">
+			<failure type="failure" message="Ensure CloudWatch log groups retains logs for at least 1 year">
+Resource: aws_cloudwatch_log_group.registrar
+File: /lambda.tf: 25-30
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-338
+
+		25 | resource &quot;aws_cloudwatch_log_group&quot; &quot;registrar&quot; {
+		26 |   name              = &quot;/aws/lambda/${local.name}-registrar&quot;
+		27 |   retention_in_days = var.log_retention_days
+		28 |   tags              = local.common_tags
+		29 |   kms_key_id        = aws_kms_key.this.arn
+		30 | }
+</failure>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_338] Ensure CloudWatch log groups retains logs for at least 1 year" classname="/lambda.tf.aws_cloudwatch_log_group.db_init" file="/lambda.tf">
+			<failure type="failure" message="Ensure CloudWatch log groups retains logs for at least 1 year">
+Resource: aws_cloudwatch_log_group.db_init
+File: /lambda.tf: 32-37
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-338
+
+		32 | resource &quot;aws_cloudwatch_log_group&quot; &quot;db_init&quot; {
+		33 |   name              = &quot;/aws/lambda/${local.name}-db-init&quot;
+		34 |   retention_in_days = var.log_retention_days
+		35 |   tags              = local.common_tags
+		36 |   kms_key_id        = aws_kms_key.this.arn
+		37 | }
+</failure>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_116] Ensure that AWS Lambda function is configured for a Dead Letter Queue(DLQ)" classname="/lambda.tf.aws_lambda_function.disponibilidad" file="/lambda.tf">
+			<failure type="failure" message="Ensure that AWS Lambda function is configured for a Dead Letter Queue(DLQ)">
+Resource: aws_lambda_function.disponibilidad
+File: /lambda.tf: 39-70
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-aws-lambda-function-is-configured-for-a-dead-letter-queue-dlq
+
+		39 | resource &quot;aws_lambda_function&quot; &quot;disponibilidad&quot; {
+		40 |   function_name = &quot;${local.name}-disponibilidad&quot;
+		41 |   role          = aws_iam_role.lambda.arn
+		42 |   runtime       = var.lambda_runtime
+		43 |   handler       = &quot;handler.lambda_handler&quot;
+		44 |   timeout       = var.lambda_timeout_consulta
+		45 |   memory_size   = var.lambda_memory_size
+		46 | 
+		47 |   filename         = &quot;${path.module}/../build/disponibilidad.zip&quot;
+		48 |   source_code_hash = filebase64sha256(&quot;${path.module}/../build/disponibilidad.zip&quot;)
+		49 | 
+		50 |   reserved_concurrent_executions = var.lambda_reserved_concurrency
+		51 | 
+		52 |   vpc_config {
+		53 |     subnet_ids         = [aws_subnet.app_a.id]
+		54 |     security_group_ids = [aws_security_group.lambda.id]
+		55 |   }
+		56 |   tracing_config {
+		57 |     mode = &quot;Active&quot;
+		58 |   }
+		59 | 
+		60 |   environment {
+		61 |     variables = local.lambda_env
+		62 |   }
+		63 | 
+		64 |   tags = local.common_tags
+		65 | 
+		66 |   depends_on = [
+		67 |     aws_cloudwatch_log_group.disponibilidad,
+		68 |     aws_iam_role_policy_attachment.lambda_vpc,
+		69 |   ]
+		70 | }
+</failure>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_272] Ensure AWS Lambda function is configured to validate code-signing" classname="/lambda.tf.aws_lambda_function.disponibilidad" file="/lambda.tf">
+			<failure type="failure" message="Ensure AWS Lambda function is configured to validate code-signing">
+Resource: aws_lambda_function.disponibilidad
+File: /lambda.tf: 39-70
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-272
+
+		39 | resource &quot;aws_lambda_function&quot; &quot;disponibilidad&quot; {
+		40 |   function_name = &quot;${local.name}-disponibilidad&quot;
+		41 |   role          = aws_iam_role.lambda.arn
+		42 |   runtime       = var.lambda_runtime
+		43 |   handler       = &quot;handler.lambda_handler&quot;
+		44 |   timeout       = var.lambda_timeout_consulta
+		45 |   memory_size   = var.lambda_memory_size
+		46 | 
+		47 |   filename         = &quot;${path.module}/../build/disponibilidad.zip&quot;
+		48 |   source_code_hash = filebase64sha256(&quot;${path.module}/../build/disponibilidad.zip&quot;)
+		49 | 
+		50 |   reserved_concurrent_executions = var.lambda_reserved_concurrency
+		51 | 
+		52 |   vpc_config {
+		53 |     subnet_ids         = [aws_subnet.app_a.id]
+		54 |     security_group_ids = [aws_security_group.lambda.id]
+		55 |   }
+		56 |   tracing_config {
+		57 |     mode = &quot;Active&quot;
+		58 |   }
+		59 | 
+		60 |   environment {
+		61 |     variables = local.lambda_env
+		62 |   }
+		63 | 
+		64 |   tags = local.common_tags
+		65 | 
+		66 |   depends_on = [
+		67 |     aws_cloudwatch_log_group.disponibilidad,
+		68 |     aws_iam_role_policy_attachment.lambda_vpc,
+		69 |   ]
+		70 | }
+</failure>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_173] Check encryption settings for Lambda environmental variable" classname="/lambda.tf.aws_lambda_function.disponibilidad" file="/lambda.tf">
+			<failure type="failure" message="Check encryption settings for Lambda environmental variable">
+Resource: aws_lambda_function.disponibilidad
+File: /lambda.tf: 39-70
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-serverless-policies/bc-aws-serverless-5
+
+		39 | resource &quot;aws_lambda_function&quot; &quot;disponibilidad&quot; {
+		40 |   function_name = &quot;${local.name}-disponibilidad&quot;
+		41 |   role          = aws_iam_role.lambda.arn
+		42 |   runtime       = var.lambda_runtime
+		43 |   handler       = &quot;handler.lambda_handler&quot;
+		44 |   timeout       = var.lambda_timeout_consulta
+		45 |   memory_size   = var.lambda_memory_size
+		46 | 
+		47 |   filename         = &quot;${path.module}/../build/disponibilidad.zip&quot;
+		48 |   source_code_hash = filebase64sha256(&quot;${path.module}/../build/disponibilidad.zip&quot;)
+		49 | 
+		50 |   reserved_concurrent_executions = var.lambda_reserved_concurrency
+		51 | 
+		52 |   vpc_config {
+		53 |     subnet_ids         = [aws_subnet.app_a.id]
+		54 |     security_group_ids = [aws_security_group.lambda.id]
+		55 |   }
+		56 |   tracing_config {
+		57 |     mode = &quot;Active&quot;
+		58 |   }
+		59 | 
+		60 |   environment {
+		61 |     variables = local.lambda_env
+		62 |   }
+		63 | 
+		64 |   tags = local.common_tags
+		65 | 
+		66 |   depends_on = [
+		67 |     aws_cloudwatch_log_group.disponibilidad,
+		68 |     aws_iam_role_policy_attachment.lambda_vpc,
+		69 |   ]
+		70 | }
+</failure>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_116] Ensure that AWS Lambda function is configured for a Dead Letter Queue(DLQ)" classname="/lambda.tf.aws_lambda_function.registrar" file="/lambda.tf">
+			<failure type="failure" message="Ensure that AWS Lambda function is configured for a Dead Letter Queue(DLQ)">
+Resource: aws_lambda_function.registrar
+File: /lambda.tf: 72-103
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-aws-lambda-function-is-configured-for-a-dead-letter-queue-dlq
+
+		72  | resource &quot;aws_lambda_function&quot; &quot;registrar&quot; {
+		73  |   function_name = &quot;${local.name}-registrar&quot;
+		74  |   role          = aws_iam_role.lambda.arn
+		75  |   runtime       = var.lambda_runtime
+		76  |   handler       = &quot;handler.lambda_handler&quot;
+		77  |   timeout       = var.lambda_timeout
+		78  |   memory_size   = var.lambda_memory_size
+		79  | 
+		80  |   filename         = &quot;${path.module}/../build/registrar.zip&quot;
+		81  |   source_code_hash = filebase64sha256(&quot;${path.module}/../build/registrar.zip&quot;)
+		82  | 
+		83  |   reserved_concurrent_executions = var.lambda_reserved_concurrency
+		84  | 
+		85  |   vpc_config {
+		86  |     subnet_ids         = [aws_subnet.app_a.id]
+		87  |     security_group_ids = [aws_security_group.lambda.id]
+		88  |   }
+		89  |   tracing_config {
+		90  |     mode = &quot;Active&quot;
+		91  |   }
+		92  | 
+		93  |   environment {
+		94  |     variables = local.lambda_env
+		95  |   }
+		96  | 
+		97  |   tags = local.common_tags
+		98  | 
+		99  |   depends_on = [
+		100 |     aws_cloudwatch_log_group.registrar,
+		101 |     aws_iam_role_policy_attachment.lambda_vpc,
+		102 |   ]
+		103 | }
+</failure>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_272] Ensure AWS Lambda function is configured to validate code-signing" classname="/lambda.tf.aws_lambda_function.registrar" file="/lambda.tf">
+			<failure type="failure" message="Ensure AWS Lambda function is configured to validate code-signing">
+Resource: aws_lambda_function.registrar
+File: /lambda.tf: 72-103
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-272
+
+		72  | resource &quot;aws_lambda_function&quot; &quot;registrar&quot; {
+		73  |   function_name = &quot;${local.name}-registrar&quot;
+		74  |   role          = aws_iam_role.lambda.arn
+		75  |   runtime       = var.lambda_runtime
+		76  |   handler       = &quot;handler.lambda_handler&quot;
+		77  |   timeout       = var.lambda_timeout
+		78  |   memory_size   = var.lambda_memory_size
+		79  | 
+		80  |   filename         = &quot;${path.module}/../build/registrar.zip&quot;
+		81  |   source_code_hash = filebase64sha256(&quot;${path.module}/../build/registrar.zip&quot;)
+		82  | 
+		83  |   reserved_concurrent_executions = var.lambda_reserved_concurrency
+		84  | 
+		85  |   vpc_config {
+		86  |     subnet_ids         = [aws_subnet.app_a.id]
+		87  |     security_group_ids = [aws_security_group.lambda.id]
+		88  |   }
+		89  |   tracing_config {
+		90  |     mode = &quot;Active&quot;
+		91  |   }
+		92  | 
+		93  |   environment {
+		94  |     variables = local.lambda_env
+		95  |   }
+		96  | 
+		97  |   tags = local.common_tags
+		98  | 
+		99  |   depends_on = [
+		100 |     aws_cloudwatch_log_group.registrar,
+		101 |     aws_iam_role_policy_attachment.lambda_vpc,
+		102 |   ]
+		103 | }
+</failure>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_173] Check encryption settings for Lambda environmental variable" classname="/lambda.tf.aws_lambda_function.registrar" file="/lambda.tf">
+			<failure type="failure" message="Check encryption settings for Lambda environmental variable">
+Resource: aws_lambda_function.registrar
+File: /lambda.tf: 72-103
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-serverless-policies/bc-aws-serverless-5
+
+		72  | resource &quot;aws_lambda_function&quot; &quot;registrar&quot; {
+		73  |   function_name = &quot;${local.name}-registrar&quot;
+		74  |   role          = aws_iam_role.lambda.arn
+		75  |   runtime       = var.lambda_runtime
+		76  |   handler       = &quot;handler.lambda_handler&quot;
+		77  |   timeout       = var.lambda_timeout
+		78  |   memory_size   = var.lambda_memory_size
+		79  | 
+		80  |   filename         = &quot;${path.module}/../build/registrar.zip&quot;
+		81  |   source_code_hash = filebase64sha256(&quot;${path.module}/../build/registrar.zip&quot;)
+		82  | 
+		83  |   reserved_concurrent_executions = var.lambda_reserved_concurrency
+		84  | 
+		85  |   vpc_config {
+		86  |     subnet_ids         = [aws_subnet.app_a.id]
+		87  |     security_group_ids = [aws_security_group.lambda.id]
+		88  |   }
+		89  |   tracing_config {
+		90  |     mode = &quot;Active&quot;
+		91  |   }
+		92  | 
+		93  |   environment {
+		94  |     variables = local.lambda_env
+		95  |   }
+		96  | 
+		97  |   tags = local.common_tags
+		98  | 
+		99  |   depends_on = [
+		100 |     aws_cloudwatch_log_group.registrar,
+		101 |     aws_iam_role_policy_attachment.lambda_vpc,
+		102 |   ]
+		103 | }
+</failure>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_116] Ensure that AWS Lambda function is configured for a Dead Letter Queue(DLQ)" classname="/lambda.tf.aws_lambda_function.db_init" file="/lambda.tf">
+			<failure type="failure" message="Ensure that AWS Lambda function is configured for a Dead Letter Queue(DLQ)">
+Resource: aws_lambda_function.db_init
+File: /lambda.tf: 105-136
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-aws-lambda-function-is-configured-for-a-dead-letter-queue-dlq
+
+		105 | resource &quot;aws_lambda_function&quot; &quot;db_init&quot; {
+		106 |   function_name = &quot;${local.name}-db-init&quot;
+		107 |   role          = aws_iam_role.lambda.arn
+		108 |   runtime       = var.lambda_runtime
+		109 |   handler       = &quot;handler.lambda_handler&quot;
+		110 |   timeout       = var.lambda_timeout
+		111 |   memory_size   = var.lambda_memory_size
+		112 | 
+		113 |   filename         = &quot;${path.module}/../build/db_init.zip&quot;
+		114 |   source_code_hash = filebase64sha256(&quot;${path.module}/../build/db_init.zip&quot;)
+		115 | 
+		116 |   reserved_concurrent_executions = var.lambda_reserved_concurrency
+		117 | 
+		118 |   vpc_config {
+		119 |     subnet_ids         = [aws_subnet.app_a.id]
+		120 |     security_group_ids = [aws_security_group.lambda.id]
+		121 |   }
+		122 |   tracing_config {
+		123 |     mode = &quot;Active&quot;
+		124 |   }
+		125 | 
+		126 |   environment {
+		127 |     variables = local.lambda_env
+		128 |   }
+		129 | 
+		130 |   tags = local.common_tags
+		131 | 
+		132 |   depends_on = [
+		133 |     aws_cloudwatch_log_group.db_init,
+		134 |     aws_iam_role_policy_attachment.lambda_vpc,
+		135 |   ]
+		136 | }
+</failure>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_272] Ensure AWS Lambda function is configured to validate code-signing" classname="/lambda.tf.aws_lambda_function.db_init" file="/lambda.tf">
+			<failure type="failure" message="Ensure AWS Lambda function is configured to validate code-signing">
+Resource: aws_lambda_function.db_init
+File: /lambda.tf: 105-136
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-272
+
+		105 | resource &quot;aws_lambda_function&quot; &quot;db_init&quot; {
+		106 |   function_name = &quot;${local.name}-db-init&quot;
+		107 |   role          = aws_iam_role.lambda.arn
+		108 |   runtime       = var.lambda_runtime
+		109 |   handler       = &quot;handler.lambda_handler&quot;
+		110 |   timeout       = var.lambda_timeout
+		111 |   memory_size   = var.lambda_memory_size
+		112 | 
+		113 |   filename         = &quot;${path.module}/../build/db_init.zip&quot;
+		114 |   source_code_hash = filebase64sha256(&quot;${path.module}/../build/db_init.zip&quot;)
+		115 | 
+		116 |   reserved_concurrent_executions = var.lambda_reserved_concurrency
+		117 | 
+		118 |   vpc_config {
+		119 |     subnet_ids         = [aws_subnet.app_a.id]
+		120 |     security_group_ids = [aws_security_group.lambda.id]
+		121 |   }
+		122 |   tracing_config {
+		123 |     mode = &quot;Active&quot;
+		124 |   }
+		125 | 
+		126 |   environment {
+		127 |     variables = local.lambda_env
+		128 |   }
+		129 | 
+		130 |   tags = local.common_tags
+		131 | 
+		132 |   depends_on = [
+		133 |     aws_cloudwatch_log_group.db_init,
+		134 |     aws_iam_role_policy_attachment.lambda_vpc,
+		135 |   ]
+		136 | }
+</failure>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_173] Check encryption settings for Lambda environmental variable" classname="/lambda.tf.aws_lambda_function.db_init" file="/lambda.tf">
+			<failure type="failure" message="Check encryption settings for Lambda environmental variable">
+Resource: aws_lambda_function.db_init
+File: /lambda.tf: 105-136
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-serverless-policies/bc-aws-serverless-5
+
+		105 | resource &quot;aws_lambda_function&quot; &quot;db_init&quot; {
+		106 |   function_name = &quot;${local.name}-db-init&quot;
+		107 |   role          = aws_iam_role.lambda.arn
+		108 |   runtime       = var.lambda_runtime
+		109 |   handler       = &quot;handler.lambda_handler&quot;
+		110 |   timeout       = var.lambda_timeout
+		111 |   memory_size   = var.lambda_memory_size
+		112 | 
+		113 |   filename         = &quot;${path.module}/../build/db_init.zip&quot;
+		114 |   source_code_hash = filebase64sha256(&quot;${path.module}/../build/db_init.zip&quot;)
+		115 | 
+		116 |   reserved_concurrent_executions = var.lambda_reserved_concurrency
+		117 | 
+		118 |   vpc_config {
+		119 |     subnet_ids         = [aws_subnet.app_a.id]
+		120 |     security_group_ids = [aws_security_group.lambda.id]
+		121 |   }
+		122 |   tracing_config {
+		123 |     mode = &quot;Active&quot;
+		124 |   }
+		125 | 
+		126 |   environment {
+		127 |     variables = local.lambda_env
+		128 |   }
+		129 | 
+		130 |   tags = local.common_tags
+		131 | 
+		132 |   depends_on = [
+		133 |     aws_cloudwatch_log_group.db_init,
+		134 |     aws_iam_role_policy_attachment.lambda_vpc,
+		135 |   ]
+		136 | }
+</failure>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_111] Ensure IAM policies does not allow write access without constraints" classname="/security.tf.aws_iam_policy_document.kms" file="/security.tf">
+			<failure type="failure" message="Ensure IAM policies does not allow write access without constraints">
+Resource: aws_iam_policy_document.kms
+File: /security.tf: 51-95
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/ensure-iam-policies-do-not-allow-write-access-without-constraint
+
+		51 | data &quot;aws_iam_policy_document&quot; &quot;kms&quot; {
+		52 |   statement {
+		53 |     sid       = &quot;AdminCuenta&quot;
+		54 |     actions   = [&quot;kms:*&quot;]
+		55 |     resources = [&quot;*&quot;]
+		56 | 
+		57 |     principals {
+		58 |       type        = &quot;AWS&quot;
+		59 |       identifiers = [&quot;arn:aws:iam::${data.aws_caller_identity.current.account_id}:root&quot;]
+		60 |     }
+		61 |   }
+		62 | 
+		63 |   statement {
+		64 |     sid       = &quot;LecturaCloudFront&quot;
+		65 |     actions   = [&quot;kms:Decrypt&quot;, &quot;kms:GenerateDataKey*&quot;]
+		66 |     resources = [&quot;*&quot;]
+		67 | 
+		68 |     principals {
+		69 |       type        = &quot;Service&quot;
+		70 |       identifiers = [&quot;cloudfront.amazonaws.com&quot;]
+		71 |     }
+		72 | 
+		73 |     condition {
+		74 |       test     = &quot;StringEquals&quot;
+		75 |       variable = &quot;AWS:SourceArn&quot;
+		76 |       values   = [&quot;arn:aws:cloudfront::${data.aws_caller_identity.current.account_id}:distribution/*&quot;]
+		77 |     }
+		78 |   }
+		79 |   statement {
+		80 |     sid       = &quot;LogsCloudWatch&quot;
+		81 |     actions   = [&quot;kms:Encrypt&quot;, &quot;kms:Decrypt&quot;, &quot;kms:ReEncrypt*&quot;, &quot;kms:GenerateDataKey*&quot;, &quot;kms:Describe*&quot;]
+		82 |     resources = [&quot;*&quot;]
+		83 | 
+		84 |     principals {
+		85 |       type        = &quot;Service&quot;
+		86 |       identifiers = [&quot;logs.${var.aws_region}.amazonaws.com&quot;]
+		87 |     }
+		88 | 
+		89 |     condition {
+		90 |       test     = &quot;ArnLike&quot;
+		91 |       variable = &quot;kms:EncryptionContext:aws:logs:arn&quot;
+		92 |       values   = [&quot;arn:aws:logs:${var.aws_region}:${data.aws_caller_identity.current.account_id}:*&quot;]
+		93 |     }
+		94 |   }
+		95 | }
+</failure>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_109] Ensure IAM policies does not allow permissions management / resource exposure without constraints" classname="/security.tf.aws_iam_policy_document.kms" file="/security.tf">
+			<failure type="failure" message="Ensure IAM policies does not allow permissions management / resource exposure without constraints">
+Resource: aws_iam_policy_document.kms
+File: /security.tf: 51-95
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/ensure-iam-policies-do-not-allow-permissions-management-resource-exposure-without-constraint
+
+		51 | data &quot;aws_iam_policy_document&quot; &quot;kms&quot; {
+		52 |   statement {
+		53 |     sid       = &quot;AdminCuenta&quot;
+		54 |     actions   = [&quot;kms:*&quot;]
+		55 |     resources = [&quot;*&quot;]
+		56 | 
+		57 |     principals {
+		58 |       type        = &quot;AWS&quot;
+		59 |       identifiers = [&quot;arn:aws:iam::${data.aws_caller_identity.current.account_id}:root&quot;]
+		60 |     }
+		61 |   }
+		62 | 
+		63 |   statement {
+		64 |     sid       = &quot;LecturaCloudFront&quot;
+		65 |     actions   = [&quot;kms:Decrypt&quot;, &quot;kms:GenerateDataKey*&quot;]
+		66 |     resources = [&quot;*&quot;]
+		67 | 
+		68 |     principals {
+		69 |       type        = &quot;Service&quot;
+		70 |       identifiers = [&quot;cloudfront.amazonaws.com&quot;]
+		71 |     }
+		72 | 
+		73 |     condition {
+		74 |       test     = &quot;StringEquals&quot;
+		75 |       variable = &quot;AWS:SourceArn&quot;
+		76 |       values   = [&quot;arn:aws:cloudfront::${data.aws_caller_identity.current.account_id}:distribution/*&quot;]
+		77 |     }
+		78 |   }
+		79 |   statement {
+		80 |     sid       = &quot;LogsCloudWatch&quot;
+		81 |     actions   = [&quot;kms:Encrypt&quot;, &quot;kms:Decrypt&quot;, &quot;kms:ReEncrypt*&quot;, &quot;kms:GenerateDataKey*&quot;, &quot;kms:Describe*&quot;]
+		82 |     resources = [&quot;*&quot;]
+		83 | 
+		84 |     principals {
+		85 |       type        = &quot;Service&quot;
+		86 |       identifiers = [&quot;logs.${var.aws_region}.amazonaws.com&quot;]
+		87 |     }
+		88 | 
+		89 |     condition {
+		90 |       test     = &quot;ArnLike&quot;
+		91 |       variable = &quot;kms:EncryptionContext:aws:logs:arn&quot;
+		92 |       values   = [&quot;arn:aws:logs:${var.aws_region}:${data.aws_caller_identity.current.account_id}:*&quot;]
+		93 |     }
+		94 |   }
+		95 | }
+</failure>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_356] Ensure no IAM policies documents allow &quot;*&quot; as a statement's resource for restrictable actions" classname="/security.tf.aws_iam_policy_document.kms" file="/security.tf">
+			<failure type="failure" message="Ensure no IAM policies documents allow &quot;*&quot; as a statement's resource for restrictable actions">
+Resource: aws_iam_policy_document.kms
+File: /security.tf: 51-95
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-356
+
+		51 | data &quot;aws_iam_policy_document&quot; &quot;kms&quot; {
+		52 |   statement {
+		53 |     sid       = &quot;AdminCuenta&quot;
+		54 |     actions   = [&quot;kms:*&quot;]
+		55 |     resources = [&quot;*&quot;]
+		56 | 
+		57 |     principals {
+		58 |       type        = &quot;AWS&quot;
+		59 |       identifiers = [&quot;arn:aws:iam::${data.aws_caller_identity.current.account_id}:root&quot;]
+		60 |     }
+		61 |   }
+		62 | 
+		63 |   statement {
+		64 |     sid       = &quot;LecturaCloudFront&quot;
+		65 |     actions   = [&quot;kms:Decrypt&quot;, &quot;kms:GenerateDataKey*&quot;]
+		66 |     resources = [&quot;*&quot;]
+		67 | 
+		68 |     principals {
+		69 |       type        = &quot;Service&quot;
+		70 |       identifiers = [&quot;cloudfront.amazonaws.com&quot;]
+		71 |     }
+		72 | 
+		73 |     condition {
+		74 |       test     = &quot;StringEquals&quot;
+		75 |       variable = &quot;AWS:SourceArn&quot;
+		76 |       values   = [&quot;arn:aws:cloudfront::${data.aws_caller_identity.current.account_id}:distribution/*&quot;]
+		77 |     }
+		78 |   }
+		79 |   statement {
+		80 |     sid       = &quot;LogsCloudWatch&quot;
+		81 |     actions   = [&quot;kms:Encrypt&quot;, &quot;kms:Decrypt&quot;, &quot;kms:ReEncrypt*&quot;, &quot;kms:GenerateDataKey*&quot;, &quot;kms:Describe*&quot;]
+		82 |     resources = [&quot;*&quot;]
+		83 | 
+		84 |     principals {
+		85 |       type        = &quot;Service&quot;
+		86 |       identifiers = [&quot;logs.${var.aws_region}.amazonaws.com&quot;]
+		87 |     }
+		88 | 
+		89 |     condition {
+		90 |       test     = &quot;ArnLike&quot;
+		91 |       variable = &quot;kms:EncryptionContext:aws:logs:arn&quot;
+		92 |       values   = [&quot;arn:aws:logs:${var.aws_region}:${data.aws_caller_identity.current.account_id}:*&quot;]
+		93 |     }
+		94 |   }
+		95 | }
+</failure>
+		</testcase>
+		<testcase name="[NONE][CKV2_AWS_30] Ensure Postgres RDS as aws_db_instance has Query Logging enabled" classname="/database.tf.aws_db_instance.this" file="/database.tf">
+			<failure type="failure" message="Ensure Postgres RDS as aws_db_instance has Query Logging enabled">
+Resource: aws_db_instance.this
+File: /database.tf: 12-35
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-postgres-rds-has-query-logging-enabled
+
+		12 | resource &quot;aws_db_instance&quot; &quot;this&quot; {
+		13 |   identifier                 = &quot;${local.name}-pg&quot;
+		14 |   engine                     = &quot;postgres&quot;
+		15 |   engine_version             = &quot;16&quot;
+		16 |   instance_class             = var.db_instance_class
+		17 |   allocated_storage          = var.db_allocated_storage
+		18 |   storage_type               = &quot;gp3&quot;
+		19 |   storage_encrypted          = true
+		20 |   kms_key_id                 = aws_kms_key.this.arn
+		21 |   db_name                    = var.db_name
+		22 |   username                   = var.db_username
+		23 |   password                   = random_password.db.result
+		24 |   db_subnet_group_name       = aws_db_subnet_group.this.name
+		25 |   vpc_security_group_ids     = [aws_security_group.rds.id]
+		26 |   multi_az                   = true
+		27 |   publicly_accessible        = false
+		28 |   backup_retention_period    = 35
+		29 |   backup_window              = &quot;08:00-09:00&quot;
+		30 |   skip_final_snapshot        = true
+		31 |   deletion_protection        = true
+		32 |   apply_immediately          = true
+		33 |   auto_minor_version_upgrade = true
+		34 |     enabled_cloudwatch_logs_exports = [&quot;postgresql&quot;, &quot;upgrade&quot;]
+		35 | }
+</failure>
+		</testcase>
+		<testcase name="[NONE][CKV2_AWS_62] Ensure S3 buckets should have event notifications enabled" classname="/frontend.tf.aws_s3_bucket.frontend" file="/frontend.tf">
+			<failure type="failure" message="Ensure S3 buckets should have event notifications enabled">
+Resource: aws_s3_bucket.frontend
+File: /frontend.tf: 17-23
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-62
+
+		17 | resource &quot;aws_s3_bucket&quot; &quot;frontend&quot; {
+		18 |   bucket = &quot;${local.name}-frontend-${random_id.bucket_suffix.hex}&quot;
+		19 | 
+		20 |   tags = {
+		21 |     Name = &quot;${local.name}-frontend&quot;
+		22 |   }
+		23 | }
+</failure>
+		</testcase>
+		<testcase name="[NONE][CKV2_AWS_4] Ensure API Gateway stage have logging level defined as appropriate" classname="/api.tf.aws_api_gateway_stage.this" file="/api.tf">
+			<failure type="failure" message="Ensure API Gateway stage have logging level defined as appropriate">
+Resource: aws_api_gateway_stage.this
+File: /api.tf: 132-137
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/ensure-api-gateway-stage-have-logging-level-defined-as-appropiate
+
+		132 | resource &quot;aws_api_gateway_stage&quot; &quot;this&quot; {
+		133 |   deployment_id = aws_api_gateway_deployment.this.id
+		134 |   rest_api_id   = aws_api_gateway_rest_api.this.id
+		135 |   stage_name    = var.environment
+		136 |   xray_tracing_enabled = true
+		137 | }
+</failure>
+		</testcase>
+		<testcase name="[NONE][CKV2_AWS_61] Ensure that an S3 bucket has a lifecycle configuration" classname="/frontend.tf.aws_s3_bucket.frontend" file="/frontend.tf">
+			<failure type="failure" message="Ensure that an S3 bucket has a lifecycle configuration">
+Resource: aws_s3_bucket.frontend
+File: /frontend.tf: 17-23
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-61
+
+		17 | resource &quot;aws_s3_bucket&quot; &quot;frontend&quot; {
+		18 |   bucket = &quot;${local.name}-frontend-${random_id.bucket_suffix.hex}&quot;
+		19 | 
+		20 |   tags = {
+		21 |     Name = &quot;${local.name}-frontend&quot;
+		22 |   }
+		23 | }
+</failure>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_18] Ensure the S3 bucket has access logging enabled" classname="/frontend.tf.aws_s3_bucket.frontend" file="/frontend.tf">
+			<failure type="failure" message="Ensure the S3 bucket has access logging enabled">
+Resource: aws_s3_bucket.frontend
+File: /frontend.tf: 17-23
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-13-enable-logging
+
+		17 | resource &quot;aws_s3_bucket&quot; &quot;frontend&quot; {
+		18 |   bucket = &quot;${local.name}-frontend-${random_id.bucket_suffix.hex}&quot;
+		19 | 
+		20 |   tags = {
+		21 |     Name = &quot;${local.name}-frontend&quot;
+		22 |   }
+		23 | }
+</failure>
+		</testcase>
+		<testcase name="[NONE][CKV2_AWS_47] Ensure AWS CloudFront attached WAFv2 WebACL is configured with AMR for Log4j Vulnerability" classname="/frontend.tf.aws_cloudfront_distribution.this" file="/frontend.tf">
+			<failure type="failure" message="Ensure AWS CloudFront attached WAFv2 WebACL is configured with AMR for Log4j Vulnerability">
+Resource: aws_cloudfront_distribution.this
+File: /frontend.tf: 93-150
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-general-47
+
+		Code lines for this resource are too many. Please use IDE of your choice to review the file.</failure>
+		</testcase>
+		<testcase name="[NONE][CKV2_AWS_51] Ensure AWS API Gateway endpoints uses client certificate authentication" classname="/api.tf.aws_api_gateway_stage.this" file="/api.tf">
+			<failure type="failure" message="Ensure AWS API Gateway endpoints uses client certificate authentication">
+Resource: aws_api_gateway_stage.this
+File: /api.tf: 132-137
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-2-51
+
+		132 | resource &quot;aws_api_gateway_stage&quot; &quot;this&quot; {
+		133 |   deployment_id = aws_api_gateway_deployment.this.id
+		134 |   rest_api_id   = aws_api_gateway_rest_api.this.id
+		135 |   stage_name    = var.environment
+		136 |   xray_tracing_enabled = true
+		137 | }
+</failure>
+		</testcase>
+		<testcase name="[NONE][CKV2_AWS_60] Ensure RDS instance with copy tags to snapshots is enabled" classname="/database.tf.aws_db_instance.this" file="/database.tf">
+			<failure type="failure" message="Ensure RDS instance with copy tags to snapshots is enabled">
+Resource: aws_db_instance.this
+File: /database.tf: 12-35
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-2-60
+
+		12 | resource &quot;aws_db_instance&quot; &quot;this&quot; {
+		13 |   identifier                 = &quot;${local.name}-pg&quot;
+		14 |   engine                     = &quot;postgres&quot;
+		15 |   engine_version             = &quot;16&quot;
+		16 |   instance_class             = var.db_instance_class
+		17 |   allocated_storage          = var.db_allocated_storage
+		18 |   storage_type               = &quot;gp3&quot;
+		19 |   storage_encrypted          = true
+		20 |   kms_key_id                 = aws_kms_key.this.arn
+		21 |   db_name                    = var.db_name
+		22 |   username                   = var.db_username
+		23 |   password                   = random_password.db.result
+		24 |   db_subnet_group_name       = aws_db_subnet_group.this.name
+		25 |   vpc_security_group_ids     = [aws_security_group.rds.id]
+		26 |   multi_az                   = true
+		27 |   publicly_accessible        = false
+		28 |   backup_retention_period    = 35
+		29 |   backup_window              = &quot;08:00-09:00&quot;
+		30 |   skip_final_snapshot        = true
+		31 |   deletion_protection        = true
+		32 |   apply_immediately          = true
+		33 |   auto_minor_version_upgrade = true
+		34 |     enabled_cloudwatch_logs_exports = [&quot;postgresql&quot;, &quot;upgrade&quot;]
+		35 | }
+</failure>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_144] Ensure that S3 bucket has cross-region replication enabled" classname="/frontend.tf.aws_s3_bucket.frontend" file="/frontend.tf">
+			<failure type="failure" message="Ensure that S3 bucket has cross-region replication enabled">
+Resource: aws_s3_bucket.frontend
+File: /frontend.tf: 17-23
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-bucket-has-cross-region-replication-enabled
+
+		17 | resource &quot;aws_s3_bucket&quot; &quot;frontend&quot; {
+		18 |   bucket = &quot;${local.name}-frontend-${random_id.bucket_suffix.hex}&quot;
+		19 | 
+		20 |   tags = {
+		21 |     Name = &quot;${local.name}-frontend&quot;
+		22 |   }
+		23 | }
+</failure>
+		</testcase>
+		<testcase name="[NONE][CKV2_AWS_42] Ensure AWS CloudFront distribution uses custom SSL certificate" classname="/frontend.tf.aws_cloudfront_distribution.this" file="/frontend.tf">
+			<failure type="failure" message="Ensure AWS CloudFront distribution uses custom SSL certificate">
+Resource: aws_cloudfront_distribution.this
+File: /frontend.tf: 93-150
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-cloudfront-distribution-uses-custom-ssl-certificate
+
+		Code lines for this resource are too many. Please use IDE of your choice to review the file.</failure>
+		</testcase>
+		<testcase name="[NONE][CKV2_AWS_29] Ensure public API gateway are protected by WAF" classname="/api.tf.aws_api_gateway_stage.this" file="/api.tf">
+			<failure type="failure" message="Ensure public API gateway are protected by WAF">
+Resource: aws_api_gateway_stage.this
+File: /api.tf: 132-137
+Guideline: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-public-api-gateway-are-protected-by-waf
+
+		132 | resource &quot;aws_api_gateway_stage&quot; &quot;this&quot; {
+		133 |   deployment_id = aws_api_gateway_deployment.this.id
+		134 |   rest_api_id   = aws_api_gateway_rest_api.this.id
+		135 |   stage_name    = var.environment
+		136 |   xray_tracing_enabled = true
+		137 | }
+</failure>
+		</testcase>
+	</testsuite>
+</testsuites>
