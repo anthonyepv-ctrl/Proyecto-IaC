@@ -45,3 +45,47 @@ output "security_group_rds_id" {
   description = "ID del Security Group asignado a la base de datos RDS"
   value       = aws_security_group.rds.id
 }
+
+data "aws_caller_identity" "current" {}
+
+data "aws_iam_policy_document" "kms" {
+  statement {
+    sid       = "AdminCuenta"
+    actions   = ["kms:*"]
+    resources = ["*"]
+
+    principals {
+      type        = "AWS"
+      identifiers = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:root"]
+    }
+  }
+
+  statement {
+    sid       = "LecturaCloudFront"
+    actions   = ["kms:Decrypt", "kms:GenerateDataKey*"]
+    resources = ["*"]
+
+    principals {
+      type        = "Service"
+      identifiers = ["cloudfront.amazonaws.com"]
+    }
+
+    condition {
+      test     = "StringEquals"
+      variable = "AWS:SourceArn"
+      values   = ["arn:aws:cloudfront::${data.aws_caller_identity.current.account_id}:distribution/*"]
+    }
+  }
+}
+
+resource "aws_kms_key" "this" {
+  description             = "Clave de cifrado de ${local.name}"
+  enable_key_rotation     = true
+  deletion_window_in_days = 7
+  policy                  = data.aws_iam_policy_document.kms.json
+}
+
+resource "aws_kms_alias" "this" {
+  name          = "alias/${local.name}"
+  target_key_id = aws_kms_key.this.key_id
+}

@@ -1,11 +1,11 @@
-aws_region  = "us-east-1"
+aws_region  = "us-east-2"
 aws_profile = "default"
 project     = "tucochera"
 environment = "dev"
-Copy-Item terraform.tfvars.example terraform.tfvars
+
 # Red
 vpc_cidr           = "10.0.0.0/16"
-availability_zones = ["us-east-1a", "us-east-1b"]
+availability_zones = ["us-east-2a", "us-east-2b"]
 subnet_cidr_app_a  = "10.0.1.0/24"
 subnet_cidr_app_b  = "10.0.2.0/24"
 subnet_cidr_db_a   = "10.0.3.0/24"

@@ -13,7 +13,7 @@ variable "environment" {
 variable "aws_region" {
   description = "Región de AWS donde se despliega la infraestructura"
   type        = string
-  default     = "us-east-1"
+  default     = "us-east-2"
 }
 
 variable "aws_profile" {
@@ -32,7 +32,7 @@ variable "vpc_cidr" {
 variable "availability_zones" {
   description = "Zonas de disponibilidad para distribuir las subredes"
   type        = list(string)
-  default     = ["us-east-1a", "us-east-1b"]
+  default     = ["us-east-2a", "us-east-2b"]
 }
 
 variable "subnet_cidr_app_a" {
@@ -101,10 +101,16 @@ variable "lambda_timeout" {
   default     = 15
 }
 
+variable "lambda_timeout_consulta" {
+  description = "Tiempo máximo de ejecución de la Lambda de consultas en segundos"
+  type        = number
+  default     = 5
+}
+
 variable "log_retention_days" {
   description = "Días de retención para los grupos de logs en CloudWatch"
   type        = number
-  default     = 7
+  default     = 30
 }
 
 variable "api_throttle_rate_limit" {
