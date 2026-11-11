@@ -19,18 +19,21 @@ resource "aws_cloudwatch_log_group" "disponibilidad" {
   name              = "/aws/lambda/${local.name}-disponibilidad"
   retention_in_days = var.log_retention_days
   tags              = local.common_tags
+  kms_key_id        = aws_kms_key.this.arn
 }
 
 resource "aws_cloudwatch_log_group" "registrar" {
   name              = "/aws/lambda/${local.name}-registrar"
   retention_in_days = var.log_retention_days
   tags              = local.common_tags
+  kms_key_id        = aws_kms_key.this.arn
 }
 
 resource "aws_cloudwatch_log_group" "db_init" {
   name              = "/aws/lambda/${local.name}-db-init"
   retention_in_days = var.log_retention_days
   tags              = local.common_tags
+  kms_key_id        = aws_kms_key.this.arn
 }
 
 resource "aws_lambda_function" "disponibilidad" {
@@ -49,6 +52,9 @@ resource "aws_lambda_function" "disponibilidad" {
   vpc_config {
     subnet_ids         = [aws_subnet.app_a.id]
     security_group_ids = [aws_security_group.lambda.id]
+  }
+  tracing_config {
+    mode = "Active"
   }
 
   environment {
@@ -80,6 +86,9 @@ resource "aws_lambda_function" "registrar" {
     subnet_ids         = [aws_subnet.app_a.id]
     security_group_ids = [aws_security_group.lambda.id]
   }
+  tracing_config {
+    mode = "Active"
+  }
 
   environment {
     variables = local.lambda_env
@@ -109,6 +118,9 @@ resource "aws_lambda_function" "db_init" {
   vpc_config {
     subnet_ids         = [aws_subnet.app_a.id]
     security_group_ids = [aws_security_group.lambda.id]
+  }
+  tracing_config {
+    mode = "Active"
   }
 
   environment {
