@@ -31,6 +31,7 @@ resource "aws_db_instance" "this" {
   deletion_protection        = true
   apply_immediately          = true
   auto_minor_version_upgrade = true
+    enabled_cloudwatch_logs_exports = ["postgresql", "upgrade"]
 }
 
 output "rds_address" {
