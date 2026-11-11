@@ -97,6 +97,16 @@ resource "aws_route_table_association" "db_b" {
   route_table_id = aws_route_table.db.id
 }
 
+resource "aws_default_security_group" "default" {
+  vpc_id = aws_vpc.this.id
+  
+  ingress = []
+  egress  = []
+  tags = {
+    Name = "${local.name}-default-sg"
+  }
+}
+
 output "vpc_id" {
   description = "ID de la VPC creada"
   value       = aws_vpc.this.id
