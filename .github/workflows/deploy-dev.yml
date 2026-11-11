@@ -19,7 +19,6 @@ jobs:
     env:
       TF_VAR_aws_profile: ""
       TF_VAR_aws_region: ${{ vars.AWS_REGION || secrets.AWS_REGION || 'us-east-2' }}
-      TF_VAR_availability_zones: '["us-east-2a", "us-east-2b"]'
 
     steps:
       - uses: actions/checkout@v6
