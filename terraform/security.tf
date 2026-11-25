@@ -76,6 +76,22 @@ data "aws_iam_policy_document" "kms" {
       values   = ["arn:aws:cloudfront::${data.aws_caller_identity.current.account_id}:distribution/*"]
     }
   }
+  statement {
+    sid       = "LogsCloudWatch"
+    actions   = ["kms:Encrypt", "kms:Decrypt", "kms:ReEncrypt*", "kms:GenerateDataKey*", "kms:Describe*"]
+    resources = ["*"]
+
+    principals {
+      type        = "Service"
+      identifiers = ["logs.${var.aws_region}.amazonaws.com"]
+    }
+
+    condition {
+      test     = "ArnLike"
+      variable = "kms:EncryptionContext:aws:logs:arn"
+      values   = ["arn:aws:logs:${var.aws_region}:${data.aws_caller_identity.current.account_id}:*"]
+    }
+  }
 }
 
 resource "aws_kms_key" "this" {

@@ -60,6 +60,36 @@ resource "aws_cloudfront_origin_access_control" "frontend" {
   signing_protocol                  = "sigv4"
 }
 
+resource "aws_cloudfront_response_headers_policy" "security_headers" {
+  name = "tucochera-dev-security-headers"
+
+  security_headers_config {
+    content_type_options {
+      override = true
+    }
+    frame_options {
+      frame_option = "DENY"
+      override     = true
+    }
+    referrer_policy {
+      referrer_policy = "strict-origin-when-cross-origin"
+      override        = true
+    }
+    strict_transport_security {
+      access_control_max_age_sec = 31536000
+      include_subdomains         = true
+      preload                    = true
+      override                   = true
+    }
+    xss_protection {
+      mode_block = true
+      protection = true
+      override   = true
+    }
+  }
+}
+
+
 resource "aws_cloudfront_distribution" "this" {
   enabled             = true
   is_ipv6_enabled     = true
@@ -93,6 +123,7 @@ resource "aws_cloudfront_distribution" "this" {
     cached_methods         = ["GET", "HEAD"]
     compress               = true
     cache_policy_id        = data.aws_cloudfront_cache_policy.optimized.id
+    response_headers_policy_id = aws_cloudfront_response_headers_policy.security_headers.id
   }
 
   ordered_cache_behavior {
@@ -108,10 +139,10 @@ resource "aws_cloudfront_distribution" "this" {
 
   restrictions {
     geo_restriction {
-      restriction_type = "none"
+      restriction_type = "whitelist"
+      locations        = ["PE"]
     }
   }
-
   viewer_certificate {
     cloudfront_default_certificate = true
     minimum_protocol_version       = "TLSv1.2_2021"
