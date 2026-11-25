@@ -17,6 +17,7 @@ resource "aws_db_instance" "this" {
   allocated_storage          = var.db_allocated_storage
   storage_type               = "gp3"
   storage_encrypted          = true
+  iam_database_authentication_enabled = true
   kms_key_id                 = aws_kms_key.this.arn
   db_name                    = var.db_name
   username                   = var.db_username
